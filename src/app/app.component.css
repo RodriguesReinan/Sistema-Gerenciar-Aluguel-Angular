@@ -1,0 +1,11 @@
+.conteiner{
+  display: flex;
+  flex-direction: row;
+}
+
+.conteiner__right{
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  margin-left: 100px;
+}

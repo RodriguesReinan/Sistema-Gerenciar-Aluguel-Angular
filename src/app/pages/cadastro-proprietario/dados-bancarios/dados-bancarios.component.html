@@ -1,0 +1,34 @@
+<div class="container__dados-bancarios">
+  <div class="dados-bancarios">
+    <h2>Cadastro Bancário</h2>
+    <form action="#" method="POST">
+      <div id="name-bank" class="form-group">
+        <label for="banco" class="form-label">Nome do Banco</label>
+        <input type="text" id="banco" name="banco" class="form-input" required>
+      </div>
+      <div id="name-agency" class="form-group">
+        <label for="agencia" class="form-label">Agência</label>
+        <input type="text" name="agencia" id="agencia" class="form-input" required>
+      </div>
+      <div id="name-account" class="form-group">
+        <label for="conta" class="form-label">Número da Conta</label>
+        <input type="text" id="conta" name="conta" class="form-input" required>
+      </div>
+      <div id="name-pix" class="form-group">
+        <label for="chave_pix" class="form-label">Chave Pix</label>
+        <input type="text" name="chave_pix" id="chave_pix" class="form-input" required>
+      </div>
+      <div id="chave-pix-tipo" class="form-group">
+        <label for="tipo_chave" class="form-label">Tipo de Chave Pix</label>
+        <select name="tipo_chave" id="tipo_chave" class="form-input" required>
+          <option value="celular">Celular</option>
+          <option value="email">E-mail</option>
+          <option value="aleatoria">Aleatória</option>
+          <option value="cpf">CPF</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-button">Cadastrar</button>
+    </form>
+  </div>
+</div>
+
