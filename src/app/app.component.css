@@ -3,9 +3,10 @@
   flex-direction: row;
 }
 
-.conteiner__right{
+.conteiner__right {
   display: flex;
-  flex-direction: row;
-  justify-items: center;
+  flex-direction: row; /* Alinha os elementos lado a lado */
+  flex-wrap: wrap; /* Permite que os elementos se ajustem se houver pouco espaço */
+  justify-content: space-between; /*space-between; /* Ajusta os elementos para ocupar o espaço disponível */
   margin-left: 100px;
 }

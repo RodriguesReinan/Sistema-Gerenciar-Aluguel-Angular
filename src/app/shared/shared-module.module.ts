@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';  // Import necessário para ngModel
+import { ReactiveFormsModule } from '@angular/forms';  // Import necessário para ngModel
 
 import {DadosPessoaisComponent} from '../shared/dados-pessoais/dados-pessoais.component';
 import {EnderecoComponent} from '../shared/endereco/endereco.component'
@@ -15,7 +15,7 @@ import {EnderecoComponent} from '../shared/endereco/endereco.component'
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule,
   ],
   exports:[
     DadosPessoaisComponent,

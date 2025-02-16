@@ -1,6 +1,31 @@
 <div class="container__cadastro-proprietario">
-  <h1>cadastro-proprietario works!</h1>
-  <app-dados-pessoais></app-dados-pessoais>
-  <app-dados-bancarios></app-dados-bancarios>
-  <app-endereco></app-endereco>
+  <h1>Cadastro do Proprietário</h1>
+  <div class="cadastro-proprietario">
+    <form *ngIf="cadastroForm" [formGroup]="cadastroForm" (ngSubmit)="salvar()">
+      <div class="row">
+        <div class="column">
+          <h3>Dados Pessoais</h3>
+          <div class="dados-pessoais">
+            <app-dados-pessoais [formGroupParent]="dadosPessoaisForm"></app-dados-pessoais>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3>Dados Bancário</h3>
+          <div class="dados-bacarios">
+            <app-dados-bancarios [formGroupParent]="dadosBancariosForm"></app-dados-bancarios>
+          </div>
+        </div>
+        <div class="column">
+          <h3>Endereço</h3>
+          <div class="endereco">
+            <app-endereco (enderecoChange)="enderecoForm($event)"></app-endereco>
+          </div>
+        </div>
+
+      </div>
+      <button class="submit-button" type="submit">Salvar Informações do Proprietário</button>
+    </form>
+  </div>
 </div>
+

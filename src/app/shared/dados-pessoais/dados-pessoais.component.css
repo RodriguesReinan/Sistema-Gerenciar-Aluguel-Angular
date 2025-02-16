@@ -1,0 +1,26 @@
+.cadastro-proprietario {
+  background-color: #ffffff; /* bg-white */
+  padding: 1.5rem; /* p-6 */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  width: 24rem; /* w-96 */
+}
+
+.form-group {
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.form-label {
+  display: block; /* block */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: #374151; /* text-gray-700 */
+}
+
+.form-input {
+  margin-top: 0.25rem; /* mt-1 */
+  padding: 0.5rem; /* p-2 */
+  width: 100%; /* w-full */
+  border: 1px solid #d1d5db; /* border */
+  border-radius: 0.375rem; /* rounded-md */
+}
