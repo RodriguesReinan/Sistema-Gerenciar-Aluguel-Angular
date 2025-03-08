@@ -1,0 +1,97 @@
+.containner__cadastro-imovel {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.containner__cadastro-imovel > h1{
+  margin-bottom: 20px;
+}
+
+.column > h3{
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap; /* permite que as colunas quebrem em telas menores */
+  justify-content: center; /* ou center, conforme a necessidade */
+  gap: 50px; /* espaço entre as colunas */
+
+}
+.column {
+  flex: 1;          /* as colunas ocuparão igualmente o espaço disponível */
+  min-width: 300px; /* define um mínimo para evitar que fiquem muito estreitas */
+  max-width: 400px;
+  width: 100%;
+
+}
+
+.submit-button {
+  width: 50%; /* w-full */
+  background-color: #3b82f6; /* bg-blue-500 */
+  color: #ffffff; /* text-white */
+  padding: 0.5rem; /* p-2 */
+  border-radius: 0.375rem; /* rounded-md */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 20px;
+}
+
+.submit-button:hover {
+  background-color: #2563eb; /* hover:bg-blue-600 */
+}
+
+
+/* Media Queries para telas menores */
+@media (max-width: 768px) {
+  .containner__cadastro-imovel > h1{
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .column {
+    min-width: auto;
+    max-width: 400px; /* Mantém um tamanho máximo para evitar que se espalhe demais */
+    width: 100%;
+  }
+
+  .row {
+    gap: 20px; /* Reduz o espaço em telas menores */
+    justify-content: center;
+  }
+
+  .submit-button {
+    max-width: 300px;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .containner__cadastro-imovel {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os elementos dentro do container */
+
+    padding: 10px; /* Reduz o padding em telas muito pequenas */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+  }
+
+  .containner__cadastro-imovel > h1{
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .submit-button {
+    max-width: 300px;
+    width: 80%;
+    font-size: 18px; /* Ajusta o tamanho da fonte do botão */
+    margin-bottom: 20px;
+  }
+}

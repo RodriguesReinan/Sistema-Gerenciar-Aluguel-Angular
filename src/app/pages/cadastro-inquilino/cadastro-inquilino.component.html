@@ -1,1 +1,17 @@
-<p>cadastro-inquilino works!</p>
+<div class="container__cadastro-inquilino">
+  <h1>Cadastro Inquilino</h1>
+  <div class="cadastro-proprietario">
+    <form *ngIf="cadastroForm" [formGroup]="cadastroForm" (ngSubmit)="salvar()">
+      <div class="row">
+        <div class="column">
+          <h3>Dados Pessoais</h3>
+          <div class="dados-pessoais">
+            <app-dados-pessoais [formGroupParent]="dadosPessoaisForm"></app-dados-pessoais>
+          </div>
+        </div>
+      </div>
+      <button class="submit-button" type="submit">Salvar</button>
+    </form>
+  </div>
+</div>
+

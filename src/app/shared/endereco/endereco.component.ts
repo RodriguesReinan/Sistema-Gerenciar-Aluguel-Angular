@@ -14,16 +14,6 @@ export class EnderecoComponent implements OnInit {
   enderecoForm!: FormGroup; // Evita erro de inicialização antes do `ngOnInit`
   @Output() enderecoChange = new EventEmitter<any>();
 
-  // endereco: CepData = {
-  //   cep: '',
-  //   numero: '',
-  //   complemento: '',
-  //   bairro: '',
-  //   uf: '',
-  //   logradouro: '',
-  //   localidade: ''
-  // };
-
   constructor(
     private service: CepService,
     private fb:FormBuilder,
@@ -69,29 +59,4 @@ export class EnderecoComponent implements OnInit {
     this.enderecoChange.emit(this.enderecoForm.value);
   }
 
-  // método criado antes de fazer o formGroup
-  // buscarEndereco(): void {
-  //   if (this.endereco.cep) {
-  //     this.service.buscarCEP(this.endereco.cep).subscribe({
-  //       next: (data) => {
-  //         this.endereco = {
-  //           cep: this.endereco.cep,
-  //           bairro: data.bairro,
-  //           uf: data.uf,
-  //           logradouro: data.logradouro, // rua
-  //           localidade: data.localidade, // cidade
-  //           numero: data.numero,
-  //           complemento: data.complemento,
-  //         };
-  //       },
-  //       error: (error) => {
-  //         console.error('Erro ao buscar o CEP:', error);
-  //         alert('Erro ao buscar o CEP!');
-  //       },
-  //       complete: () => {
-  //         console.log('Busca de CEP concluída.');
-  //       }
-  //     });
-  //   }
-  // }
 }

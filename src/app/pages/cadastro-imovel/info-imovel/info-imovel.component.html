@@ -1,0 +1,41 @@
+<div class="containner__info-imovel">
+  <div class="info-imovel">
+    <h2>Cadastro de Imóvel</h2>
+    <form [formGroup]="formGroupParent">
+      <div class="form-group">
+        <label for="area_total" class="form-label">Área Total (m²):</label>
+        <input type="number" id="area_total" name="area_total" class="form-input" formControlName="area_total" required>
+      </div>
+
+      <div class="form-group">
+        <label for="quartos" class="form-label">Quantidade de Quartos:</label>
+        <input type="number" id="quartos" name="quartos" class="form-input" formControlName="quartos" required>
+      </div>
+
+      <div class="form-group">
+        <label for="suites" class="form-label">Quantidade de Suítes:</label>
+        <input type="number" id="suites" name="suites" class="form-input" formControlName="suites" required>
+      </div>
+
+      <div class="form-group">
+        <label for="banheiros" class="form-label">Quantidade de Banheiros:</label>
+        <input type="number" id="banheiros" name="banheiros" class="form-input" formControlName="banheiros" required>
+      </div>
+
+      <div class="form-group">
+        <label for="descricao" class="form-label">Descrição:</label>
+        <textarea id="descricao" name="descricao" rows="4" class="form-input" formControlName="descricao" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="proprietario" class="form-label">Proprietário (CPF):</label>
+        <select id="proprietario" class="form-input" formControlName="cpf_proprietario" required>
+          <option *ngFor="let proprietario of proprietarios" [value]="proprietario.cpf">
+            {{ proprietario.nome }} - {{ proprietario.cpf }}
+          </option>
+        </select>
+      </div>
+
+    </form>
+  </div>
+</div>

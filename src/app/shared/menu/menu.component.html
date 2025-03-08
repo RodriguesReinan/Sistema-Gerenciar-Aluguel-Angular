@@ -1,15 +1,50 @@
 <div class="container__menu">
-  <div class="menu">
+  <!-- Botão hamburger (visível apenas no mobile) -->
+  <button class="hamburger" (click)="toggleMenu()">☰</button>
+
+  <nav class="menu" [class.open]="isMenuOpen">
     <ul>
       <li>
         <a [routerLink]="['/cadastrar-proprietario']"
            [routerLinkActive]="['activated']"
            [routerLinkActiveOptions]="{exact:true}"
+           (click)="closeMenu()"
         >Cadastrar Proprietário</a>
       </li>
-      <li>Cadastrar Imóvel</li>
-      <li>Cadastrar Inquilino</li>
+
+      <li>
+        <a [routerLink]="['/cadastrar-corretor']"
+        [routerLinkActive]="['activated']"
+        [routerLinkActiveOptions]="{exact:true}"
+        (click)="closeMenu()"
+        >Cadastrar Corretor
+        </a>
+      </li>
+
+      <li>
+        <a [routerLink]="['/cadastrar-imovel']"
+        [routerLinkActive]="['activated']"
+        [routerLinkActiveOptions]="{exact:true}"
+        (click)="closeMenu()"
+        >Cadastrar Imóvel
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/cadastrar-inquilino']"
+        [routerLinkActive]="['activated']"
+        [routerLinkActiveOptions]="{exact:true}"
+        (click)="closeMenu()"
+        >Cadastrar Inquilino
+        </a>
+      </li>
       <li>Gestão de Aluguel</li>
     </ul>
+  </nav>
+
+  <!-- Área de conteúdo -->
+  <div class="content">
+    <router-outlet></router-outlet> <!-- Aqui o conteúdo das rotas será renderizado -->
   </div>
+
 </div>
+

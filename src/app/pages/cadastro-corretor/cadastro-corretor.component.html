@@ -1,1 +1,31 @@
-<p>cadastro-corretor works!</p>
+<div class="container__cadastro-corretor">
+  <h1>Cadastro do Corretor</h1>
+  <div class="cadastro-corretor">
+    <form *ngIf="cadastroForm" [formGroup]="cadastroForm" (ngSubmit)="salvar()">
+      <div class="row">
+        <div class="column">
+          <h3>Dados Pessoais</h3>
+          <div class="dados-pessoais">
+            <app-dados-pessoais [formGroupParent]="dadosPessoaisForm"></app-dados-pessoais>
+          </div>
+        </div>
+
+        <div class="column">
+          <h3>Dados Bancário</h3>
+          <div class="dados-bacarios">
+            <app-dados-bancario [formGroupParent]="dadosBancariosForm"></app-dados-bancario>
+          </div>
+        </div>
+        <div class="column">
+          <h3>Endereço</h3>
+          <div class="endereco">
+            <app-endereco (enderecoChange)="enderecoForm($event)"></app-endereco>
+          </div>
+        </div>
+
+      </div>
+      <button class="submit-button" type="submit">Salvar Informações do Corretor</button>
+    </form>
+  </div>
+</div>
+

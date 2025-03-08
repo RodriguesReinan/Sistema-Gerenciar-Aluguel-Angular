@@ -3,26 +3,25 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule, FormsModule } from '@angular/forms';  // Import necessário para ngModel
 
-import {SharedModule} from '../../shared/shared-module.module'
+import { SharedModule } from '../../shared/shared-module.module';
 
-import {DadosBancariosComponent} from './dados-bancarios/dados-bancarios.component';
-import { CadastroProprietarioComponent } from './cadastro-proprietario.component';
+import { CadastroCorretorComponent } from './cadastro-corretor.component';
 
 
 @NgModule({
   declarations: [
-    DadosBancariosComponent,
-    CadastroProprietarioComponent,
+    CadastroCorretorComponent,
+  ],
 
-  ],
-  exports:[
-  ],
   imports: [
     CommonModule,
     HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-  ]
+  ],
+  exports: [
+    CadastroCorretorComponent
+  ],
 })
-export class CadastroProprietarioModule { }
+export class CadastroCorretorModule { }

@@ -1,1 +1,27 @@
-<p>cadastro-imovel works!</p>
+<div class="containner__cadastro-imovel">
+  <h1>Cadastro do Imóvel</h1>
+  <div class="cadastro-imovel">
+    <form *ngIf="cadastroForm" [formGroup]="cadastroForm" (ngSubmit)="salvar()">
+      <div class="row">
+
+        <div class="column">
+          <h3>Informações do Imóvel</h3>
+          <div class="info-imovel">
+            <app-info-imovel
+              [formGroupParent]="cadastroForm"
+              [proprietarios]="proprietarios">
+            </app-info-imovel>
+          </div>
+        </div>
+        <div class="column">
+          <h3>Endereço</h3>
+          <div class="endereco">
+            <app-endereco (enderecoChange)="enderecoForm($event)"></app-endereco>
+          </div>
+        </div>
+
+      </div>
+      <button class="submit-button" type="submit">Salvar Informações do Imóvel</button>
+    </form>
+  </div>
+</div>

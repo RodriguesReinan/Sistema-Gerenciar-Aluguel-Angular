@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';  // Import necessário para ngModel
 
-import {DadosPessoaisComponent} from '../shared/dados-pessoais/dados-pessoais.component';
-import {EnderecoComponent} from '../shared/endereco/endereco.component'
+import { DadosPessoaisComponent } from './dados-pessoais/dados-pessoais.component';
+import { EnderecoComponent } from './endereco/endereco.component';
+import { DadosBancarioComponent } from './dados-bancario/dados-bancario.component';
+
 
 
 @NgModule({
   declarations: [
     DadosPessoaisComponent,
-    EnderecoComponent
+    EnderecoComponent,
+    DadosBancarioComponent,
   ],
   imports: [
     CommonModule,
@@ -19,8 +22,8 @@ import {EnderecoComponent} from '../shared/endereco/endereco.component'
   ],
   exports:[
     DadosPessoaisComponent,
-    EnderecoComponent
-
+    EnderecoComponent,
+    DadosBancarioComponent
   ],
 })
-export class SharedModuleModule { }
+export class SharedModule { }

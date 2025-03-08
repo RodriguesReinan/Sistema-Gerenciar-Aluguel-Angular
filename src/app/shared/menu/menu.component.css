@@ -15,6 +15,12 @@
   background-color: #2c3e50;
   padding-top: 20px;
   color: white;
+  transition: transform 0.3s ease; /* Animação para o menu no mobile */
+  position: fixed; /* Fixa o menu na lateral */
+  top: 0;
+  left: 0;
+  height: 100%; /* Altura total da tela */
+  z-index: 1000; /* Garante que o menu fique acima do conteúdo */
 }
 
 .menu ul {
@@ -30,6 +36,7 @@
 
 .menu ul li a {
   color: white;
+  text-decoration: none; /* Remove sublinhado dos links */
 }
 
 .menu ul li:hover {
@@ -38,4 +45,50 @@
 
 .menu ul li a.activated{
   color: red;
+}
+
+/* Botão hamburger (visível apenas no mobile) */
+.hamburger {
+  display: none; /* Escondido por padrão em desktop */
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100; /* Acima do menu */
+}
+
+/* Conteúdo principal */
+.content {
+  flex: 1; /* Ocupa o espaço restante ao lado do menu */
+  margin-left: 260px; /* Espaço para o menu fixo em desktop */
+}
+
+/* Media Queries para mobile */
+@media (max-width: 768px) {
+  .menu {
+    transform: translateX(-100%); /* Esconde o menu fora da tela */
+    width: 250px; /* Mantém a largura no mobile */
+  }
+
+  .menu.open {
+    transform: translateX(0); /* Mostra o menu quando ativado */
+  }
+
+  .hamburger {
+    display: block; /* Mostra o botão hamburger no mobile */
+  }
+
+  .content {
+    margin-left: 0; /* Remove o espaço do menu em mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .menu {
+    width: 200px; /* Reduz a largura em telas muito pequenas */
+  }
 }

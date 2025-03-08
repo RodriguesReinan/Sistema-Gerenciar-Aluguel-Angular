@@ -1,12 +1,31 @@
 .conteiner{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  padding: 10px;
+  gap: 20px;
 }
 
 .conteiner__right {
   display: flex;
-  flex-direction: row; /* Alinha os elementos lado a lado */
-  flex-wrap: wrap; /* Permite que os elementos se ajustem se houver pouco espaço */
-  justify-content: space-between; /*space-between; /* Ajusta os elementos para ocupar o espaço disponível */
-  margin-left: 100px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 10px;
+  flex: 1;
+  max-width: 100%;
+}
+
+
+@media (max-width: 768px) {
+  .conteiner {
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .conteiner__right {
+    margin-left: 0;
+    justify-content: center;
+  }
 }
