@@ -1,6 +1,16 @@
-<div class="conteiner">
-  <app-menu></app-menu>
-  <div class="conteiner__right">
+<div class="container">
+  <div class="container_left" *ngIf="isLoggedIn$ | async">
+    <app-menu></app-menu>
+  </div>
+
+  <div class="container__right">
     <router-outlet></router-outlet>
+    <div class="notificacoes">
+      <app-notificacoes *ngIf="isLoggedIn$ | async"></app-notificacoes>
+    </div>
+
+    <div class="btn_sair_topbar" *ngIf="(isLoggedIn$ | async) && showLogoutButton">
+      <button (click)="logout()">Sair</button>
+    </div>
   </div>
 </div>

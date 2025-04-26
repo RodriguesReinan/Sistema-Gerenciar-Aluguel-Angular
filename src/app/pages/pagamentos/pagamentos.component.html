@@ -1,0 +1,88 @@
+<!-- <div class="container_pagamentos">
+  <h2>Pagamentos</h2>
+  <div class="pagamentos">
+    <table class="tabel_pagamentos">
+      <thead class="thead_pagamentos">
+        <tr>
+          <th class="th">Data Vencimento</th>
+          <th class="th">Data Pagamento</th>
+          <th class="th">Método Pagamento</th>
+          <th class="th">Status</th>
+          <th class="th">Valor Pago</th>
+        </tr>
+      </thead>
+      <tbody id="pagamentos-list" class="pagamentos-list">
+        <tr *ngFor="let pagamento of pagamentos">
+          <td>{{pagamento.data_vencimento}}</td>
+          <td>{{pagamento.data_pagamento}}</td>
+          <td>{{pagamento.metodo_pagamento}}</td>
+          <td>{{pagamento.status}}</td>
+          <td>{{pagamento.valor_pago}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div> -->
+
+
+<div class="container_pagamentos">
+  <h2>Pagamentos</h2>
+  <div class="pagamentos">
+    <table class="tabel_pagamentos">
+      <thead class="thead_pagamentos">
+        <tr>
+          <th class="th">Data Vencimento</th>
+          <th class="th">Data Pagamento</th>
+          <th class="th">Método Pagamento</th>
+          <th class="th">Status</th>
+          <th class="th">Valor Pago</th>
+          <th class="th">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="pagamentos-list" class="pagamentos-list">
+        <tr *ngFor="let pagamento of pagamentos">
+          <td *ngIf="editandoPagamentoId !== pagamento.id">{{ pagamento.data_vencimento }}</td>
+          <td *ngIf="editandoPagamentoId === pagamento.id">
+            <!-- <input type="date" [(ngModel)]="pagamento.data_vencimento"> -->
+            <label>{{ pagamento.data_vencimento }}</label>
+          </td>
+
+          <td *ngIf="editandoPagamentoId !== pagamento.id">{{ pagamento.data_pagamento }}</td>
+          <td *ngIf="editandoPagamentoId === pagamento.id">
+            <input type="date" [(ngModel)]="pagamento.data_pagamento">
+          </td>
+
+          <td *ngIf="editandoPagamentoId !== pagamento.id">{{ pagamento.metodo_pagamento }}</td>
+          <td *ngIf="editandoPagamentoId === pagamento.id">
+            <select [(ngModel)]="pagamento.metodo_pagamento">
+              <option value="Boleto">Boleto</option>
+              <option value="transferência">transferência</option>
+              <option value="PIX">PIX</option>
+            </select>
+          </td>
+
+          <td *ngIf="editandoPagamentoId !== pagamento.id">{{ pagamento.status }}</td>
+          <td *ngIf="editandoPagamentoId === pagamento.id">
+            <select [(ngModel)]="pagamento.status">
+              <option value="pendente">pendente</option>
+              <option value="pago">pago</option>
+              <option value="atrasado">atrasado</option>
+            </select>
+          </td>
+
+          <td *ngIf="editandoPagamentoId !== pagamento.id">R$ {{ pagamento.valor_pago }}</td>
+          <td *ngIf="editandoPagamentoId === pagamento.id">
+            <input type="number" [(ngModel)]="pagamento.valor_pago">
+          </td>
+
+          <td>
+            <button *ngIf="editandoPagamentoId !== pagamento.id" (click)="editar(pagamento.id)">Editar</button>
+            <button *ngIf="editandoPagamentoId === pagamento.id" (click)="salvar(pagamento)">Salvar</button>
+            <button *ngIf="editandoPagamentoId === pagamento.id" (click)="editandoPagamentoId = null">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

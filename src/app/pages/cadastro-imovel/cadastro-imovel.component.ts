@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms'
 import { ProprietarioService } from '../../services/proprietario.service';
 import { ImovelService } from '../../services/imovel.service';
@@ -18,6 +18,9 @@ export class CadastroImovelComponent implements OnInit {
   ngOnInit(): void {
     this.cadastroForm = this.fb.group({
       cpf_proprietario: [''], // Campo para CPF do proprietário
+      tipo_imovel: [''],
+      casa_apartamento: [''],
+      aluguel_venda: [''],
       area_total: [''],
       quartos: [''],
       suites: [''],
@@ -56,6 +59,9 @@ export class CadastroImovelComponent implements OnInit {
      // nomes das propriedades devem ser iguais aos nomes na api
     const novoImovel = {
       endereco: `${endereco.cep}, ${endereco.logradouro}, ${endereco.numero}, ${endereco.bairro}, ${endereco.localidade} - ${endereco.uf}`,
+      tipo_imovel: formValue.tipo_imovel,
+      casa_apartamento: formValue.casa_apartamento,
+      aluguel_venda: formValue.aluguel_venda,
       area_total: parseFloat(formValue.area_total),
       qtd_quartos: parseInt(formValue.quartos, 10),
       qtd_suites: parseInt(formValue.suites, 10),

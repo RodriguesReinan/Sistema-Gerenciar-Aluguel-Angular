@@ -8,6 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class DadosPessoaisComponent implements OnInit {
   @Input() formGroupParent!: FormGroup;
+  @Input() isInquilino: boolean = false;
 
   constructor() { }
 

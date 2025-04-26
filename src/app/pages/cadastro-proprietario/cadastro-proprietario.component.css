@@ -4,6 +4,7 @@
   padding: 20px;
   font-size: 18px;
   text-align: center;
+
 }
 
 .container__cadastro-proprietario > h1{
@@ -18,7 +19,7 @@
   display: flex;
   flex-wrap: wrap; /* permite que as colunas quebrem em telas menores */
   justify-content: center; /* ou center, conforme a necessidade */
-  gap: 50px; /* espaço entre as colunas */
+  gap: 20px; /* espaço entre as colunas */
 
 }
 .column {

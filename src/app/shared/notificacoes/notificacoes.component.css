@@ -1,0 +1,64 @@
+.notificacao-wrapper {
+  position: relative;
+}
+
+.sininho {
+  position: fixed;
+  top: 15px;
+  right: 60px;
+  background-color: #2c3e50;   /* azul escuro sofisticado */
+  color: #ffffff;              /* texto branco */
+  border: none;
+  padding: 5px 5px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sininho:hover{
+  background-color: #1a252f;  /* tom ainda mais escuro no hover */
+  transform: translateY(-2px); /* leve "pulo" no hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contador {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.notificacao {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.notificacao:hover {
+  background-color: #f7f7f7;
+}
+
+.notificacao.lida {
+  opacity: 0.6;
+}

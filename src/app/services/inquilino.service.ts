@@ -16,7 +16,7 @@ export class InquilinoService {
   }
 
 
-  getInquilino(): Observable<any>{
+  getInquilinos(): Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/`);
   }
 

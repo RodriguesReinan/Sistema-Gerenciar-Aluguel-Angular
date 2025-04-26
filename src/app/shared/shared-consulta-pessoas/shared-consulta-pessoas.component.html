@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>Consulta de Pessoas</h2>
+
+  <div class="filters">
+    <select [(ngModel)]="tipoPessoa" (change)="carregarPessoas()">
+      <option value="">Selecione o tipo</option>
+      <option value="proprietario">Proprietário</option>
+      <option value="inquilino">Inquilino</option>
+      <!-- <option value="corretor">Corretor</option> -->
+    </select>
+
+    <input type="text" placeholder="Nome" [(ngModel)]="filtroNome" (input)="aplicarFiltros()">
+    <input type="text" placeholder="CPF/CNPJ" [(ngModel)]="filtroDocumento" (input)="aplicarFiltros()">
+    <select [(ngModel)]="filtroTipo" (change)="aplicarFiltros()">
+      <option value="">Todos</option>
+      <option value="fisica">Pessoa Física</option>
+      <option value="juridica">Pessoa Jurídica</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF/CNPJ</th>
+        <th>Tipo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pessoa of getPessoasPaginadas()">
+        <td>{{ pessoa.nome }}</td>
+        <td>{{ pessoa.cpf }}</td>
+        <td>{{ oQueePessoa }}</td>
+        <td class="acao-buttons">
+          <button (click)="editar(pessoa)">✏️ Editar</button>
+          <button (click)="excluir(pessoa)">❌ Excluir</button>
+          <button (click)="detalhes(pessoa)">🔍 Detalhes</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="paginaAnterior()" [disabled]="paginaAtual === 1">⬅️ Anterior</button>
+    <span>Página {{ paginaAtual }}</span>
+    <button (click)="proximaPagina()" [disabled]="paginaAtual * itensPorPagina >= pessoasFiltradas.length">
+      Próxima ➡️
+    </button>
+  </div>
+</div>

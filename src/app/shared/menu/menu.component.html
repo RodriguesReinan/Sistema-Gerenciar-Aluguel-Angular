@@ -2,49 +2,57 @@
   <!-- Botão hamburger (visível apenas no mobile) -->
   <button class="hamburger" (click)="toggleMenu()">☰</button>
 
-  <nav class="menu" [class.open]="isMenuOpen">
+  <nav class="menu">
     <ul>
+      <li>
+        <a [routerLink]="['/']"
+           [routerLinkActive]="['activated']"
+           [routerLinkActiveOptions]="{ exact: true }">
+          🏠 Home
+        </a>
+      </li>
       <li>
         <a [routerLink]="['/cadastrar-proprietario']"
            [routerLinkActive]="['activated']"
-           [routerLinkActiveOptions]="{exact:true}"
-           (click)="closeMenu()"
-        >Cadastrar Proprietário</a>
-      </li>
-
-      <li>
-        <a [routerLink]="['/cadastrar-corretor']"
-        [routerLinkActive]="['activated']"
-        [routerLinkActiveOptions]="{exact:true}"
-        (click)="closeMenu()"
-        >Cadastrar Corretor
+           [routerLinkActiveOptions]="{ exact: true }">
+          Cadastrar Proprietário
         </a>
       </li>
-
+      <!-- <li>
+        <a [routerLink]="['/cadastrar-corretor']"
+           [routerLinkActive]="['activated']"
+           [routerLinkActiveOptions]="{ exact: true }">
+          Cadastrar Corretor
+        </a>
+      </li> -->
       <li>
         <a [routerLink]="['/cadastrar-imovel']"
-        [routerLinkActive]="['activated']"
-        [routerLinkActiveOptions]="{exact:true}"
-        (click)="closeMenu()"
-        >Cadastrar Imóvel
+           [routerLinkActive]="['activated']"
+           [routerLinkActiveOptions]="{ exact: true }">
+          Cadastrar Imóvel
         </a>
       </li>
       <li>
         <a [routerLink]="['/cadastrar-inquilino']"
-        [routerLinkActive]="['activated']"
-        [routerLinkActiveOptions]="{exact:true}"
-        (click)="closeMenu()"
-        >Cadastrar Inquilino
+           [routerLinkActive]="['activated']"
+           [routerLinkActiveOptions]="{ exact: true }">
+          Cadastrar Inquilino
         </a>
       </li>
-      <li>Gestão de Aluguel</li>
+      <li>
+        <a [routerLink]="['/cadastrar-aluguel']"
+           [routerLinkActive]="['activated']"
+           [routerLinkActiveOptions]="{ exact: true }">
+          Gerenciar Contratos
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/consultas']"
+           [routerLinkActive]="['activated']"
+           [routerLinkActiveOptions]="{ exact: true }">
+           Consultas
+        </a>
+      </li>
     </ul>
   </nav>
-
-  <!-- Área de conteúdo -->
-  <div class="content">
-    <router-outlet></router-outlet> <!-- Aqui o conteúdo das rotas será renderizado -->
-  </div>
-
 </div>
-

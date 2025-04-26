@@ -2,6 +2,32 @@
   <div class="info-imovel">
     <h2>Cadastro de Imóvel</h2>
     <form [formGroup]="formGroupParent">
+
+      <div class="form-group">
+        <label for="tipo_imovel" class="form-label">Tipo do Imóvel:</label>
+        <select id="tipo_imovel" class="form-input" formControlName="tipo_imovel">
+          <option value="residencial">Residencial</option>
+          <option value="comercial">Comercial</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="casa_apartamento" class="form-label">Casa/Apartamento:</label>
+        <select id="casa_apartamento" class="form-input" formControlName="casa_apartamento">
+          <option value="casa">Casa</option>
+          <option value="apartamento">Apartamento</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="aluguel_venda" class="form-label">Aluguel/Venda:</label>
+        <select id="aluguel_venda" class="form-input" formControlName="aluguel_venda">
+          <option value="aluguel">Aluguel</option>
+          <option value="venda">Venda</option>
+        </select>
+      </div>
+
+
       <div class="form-group">
         <label for="area_total" class="form-label">Área Total (m²):</label>
         <input type="number" id="area_total" name="area_total" class="form-input" formControlName="area_total" required>

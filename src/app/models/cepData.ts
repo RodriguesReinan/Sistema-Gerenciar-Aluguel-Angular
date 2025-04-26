@@ -6,4 +6,5 @@ export type CepData = {
   uf: string,
   logradouro:string,
   localidade: string
+  erro: string
 }

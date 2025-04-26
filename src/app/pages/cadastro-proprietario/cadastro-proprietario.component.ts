@@ -4,6 +4,7 @@ import { ProprietarioService } from '../../services/proprietario.service';
 // Se você estiver usando a variável em algum binding e ela precisar ser atualizada,
 // você pode usar o método markForCheck para forçar a detecção de mudanças:
 import { ChangeDetectorRef } from '@angular/core';
+import { cpfCnpjValidator } from '../../validador/cpf-cnpj.validador';
 
 @Component({
   selector: 'app-cadastro-proprietario',
@@ -21,14 +22,17 @@ export class CadastroProprietarioComponent implements OnInit {
     this.cadastroForm = this.fb.group({
       dadosPessoais: this.fb.group({
         nome: [''],
-        cpf_cnpj: [''],
-        telefone: ['']
+        cpf_cnpj: ['', [cpfCnpjValidator]],
+        telefone: [''],
+
+        rg: [''],
+        orgao_emissor: [''],
+        estado_civil: [''],
+        profissao_ocupacao: [''],
+        email: ['']
       }),
       dadosBancarios: this.fb.group({}),
     })
-
-    //this.carregarProprietarios();
-
   }
 
   carregarProprietarios(){
@@ -55,6 +59,11 @@ export class CadastroProprietarioComponent implements OnInit {
       nome: dadosPessoais.nome,
       cpf: dadosPessoais.cpf_cnpj,
       telefone: dadosPessoais.telefone,
+      rg: dadosPessoais.rg,
+      orgao_emissor: dadosPessoais.orgao_emissor,
+      estado_civil: dadosPessoais.estado_civil,
+      profissao_ocupacao: dadosPessoais.profissao_ocupacao,
+      email: dadosPessoais.email,
       endereco: `${endereco.cep}, ${endereco.logradouro}, ${endereco.numero}, ${endereco.bairro}, ${endereco.localidade} - ${endereco.uf}`,
       conta_bancaria: dadosBancarios.numero_conta,
       pix: dadosBancarios.chave_pix,

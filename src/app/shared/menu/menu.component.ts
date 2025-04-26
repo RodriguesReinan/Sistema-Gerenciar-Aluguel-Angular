@@ -21,4 +21,11 @@ export class MenuComponent implements OnInit {
     this.isMenuOpen = false;
   }
 
+  // Lógica para abrir/fechar submenus ao clicar
+  toggleSubMenu(event: Event) {
+    event.stopPropagation();
+    const target = event.currentTarget as HTMLElement;
+    target.classList.toggle("active");
+  }
+
 }

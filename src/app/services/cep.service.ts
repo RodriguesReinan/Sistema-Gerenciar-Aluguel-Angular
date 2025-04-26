@@ -19,7 +19,7 @@ export class CepService {
    buscarCEP(cep:string):Observable<CepData>{
     const cepNumerico = cep.replace(/\D/g, ''); // remove caracteres nao numéricos
     if (cepNumerico.length != 8){
-      alert('CEP inválido. Insira 8 dígitos.');
+      alert('CEP inválido. Insira 8 dígitos, com ou sem hífen.');
       throw new Error('CEP inválido'); // Interrompe a execução em caso de erro
     }
 

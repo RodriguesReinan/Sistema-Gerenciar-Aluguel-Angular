@@ -1,3 +1,37 @@
-<p>login works!</p>
+<!-- <p>login works!</p>
 <button (click)="login()">Logar</button>
-<button (click)="logout()">Deslogar</button>
+<button (click)="logout()">Deslogar</button> -->
+
+
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="username">Usuário</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+        #usernameInput="ngModel"
+        [class.invalid]="usernameInput.invalid && usernameInput.touched">
+      <span *ngIf="usernameInput.invalid && usernameInput.touched">Usuário é obrigatório</span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        #passwordInput="ngModel"
+        [class.invalid]="passwordInput.invalid && passwordInput.touched">
+      <span *ngIf="passwordInput.invalid && passwordInput.touched">Senha é obrigatória</span>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+  </form>
+</div>

@@ -13,11 +13,15 @@ export class InfoImovelComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.formGroupParent.addControl('tipo_imovel', new FormControl(''));
+    this.formGroupParent.addControl('casa_apartamento', new FormControl(''));
+    this.formGroupParent.addControl('aluguel_venda', new FormControl(''));
     this.formGroupParent.addControl('area_total', new FormControl(''));
     this.formGroupParent.addControl('quartos', new FormControl(''));
     this.formGroupParent.addControl('suites', new FormControl(''));
     this.formGroupParent.addControl('banheiros', new FormControl(''));
     this.formGroupParent.addControl('descricao', new FormControl(''));
+
   }
 
 }

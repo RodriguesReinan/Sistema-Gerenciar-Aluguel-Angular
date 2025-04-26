@@ -1,0 +1,44 @@
+<!-- Sininho de notificações -->
+<div class="notificacao-wrapper">
+  <button (click)="toggleDropdown()" class="sininho">
+    🔔
+    <span class="contador" *ngIf="notificacoesNaoVisualizadas.length">
+      {{ notificacoesNaoVisualizadas.length }}
+    </span>
+  </button>
+
+  <!-- Dropdown de notificações -->
+  <div class="dropdown" *ngIf="dropdownAberto">
+    <div *ngIf="notificacoes.length; else nenhuma">
+      <div
+        class="notificacao"
+        *ngFor="let notif of notificacoes"
+        (click)="marcarComoVisualizada(notif.id)"
+        [class.lida]="notif.status === 'enviado-visualizado'"
+      >
+        <strong>{{ notif.titulo }}</strong>
+        <p>{{ notif.mensagem }}</p>
+        <small>{{ notif.data_envio | date: 'short' }}</small>
+      </div>
+    </div>
+
+    <!-- bloco de código original -->
+    <!-- <div *ngIf="notificacoes.length; else nenhuma">
+      <div
+        class="notificacao"
+        *ngFor="let notif of notificacoes"
+        (click)="marcarComoVisualizada(notif.pk_id)"
+        [class.lida]="notif.status === 'enviado-visualizado'"
+      >
+        <strong>{{ notif.titulo }}</strong>
+        <p>{{ notif.mensagem }}</p>
+        <small>{{ notif.data_envio | date: 'short' }}</small>
+      </div>
+    </div> -->
+
+
+    <ng-template #nenhuma>
+      <p>Sem notificações.</p>
+    </ng-template>
+  </div>
+</div>
