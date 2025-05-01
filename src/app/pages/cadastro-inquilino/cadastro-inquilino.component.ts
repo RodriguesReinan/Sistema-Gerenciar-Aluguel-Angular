@@ -26,7 +26,7 @@ export class CadastroInquilinoComponent implements OnInit {
         estado_civil: [''],
         profissao_ocupacao: [''],
         email: [''],
-        data_nascimento: [''],
+        dt_nascimento: [''],
         nome_pai: [''],
         nome_mae: ['']
       }),
@@ -46,7 +46,21 @@ export class CadastroInquilinoComponent implements OnInit {
   }
 
   salvar(){
+    if (this.cadastroForm.invalid) {
+      window.alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    // os nomes dos atributos de novoInquilino, tem que ser igual ao nome na api
     const dadosPessoais = this.cadastroForm.get('dadosPessoais')?.value;
+
+    // Ensure no empty strings are sent
+    for (const key in dadosPessoais) {
+      if (typeof dadosPessoais[key] === 'string' && !dadosPessoais[key].trim()) {
+          window.alert(`O campo ${key} não pode estar vazio.`);
+          return;
+      }
+    }
 
     const novoInquilino = {
       nome: dadosPessoais.nome,
@@ -57,7 +71,7 @@ export class CadastroInquilinoComponent implements OnInit {
       estado_civil: dadosPessoais.estado_civil,
       profissao_ocupacao: dadosPessoais.profissao_ocupacao,
       email: dadosPessoais.email,
-      data_nascimento: dadosPessoais.data_nascimento,
+      data_nascimento: dadosPessoais.dt_nascimento,
       nome_pai: dadosPessoais.nome_pai,
       nome_mae: dadosPessoais.nome_mae
     }
@@ -75,12 +89,27 @@ export class CadastroInquilinoComponent implements OnInit {
       error: (error) => {
         let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
 
-        if (error.message){
-          mensagemErro = `Erro: ${error.message}`;
+        if (error.status === 409) {
+          // Conflito (e.g., duplicidade)
+          mensagemErro = `Erro: ${error.error.detail}.`;
+        } else if (error.status === 422) {
+          // Erro de validação (Pydantic/FastAPI)
+          if (Array.isArray(error.error.detail)) {
+              // Extrai as mensagens de erro do array 'detail'
+              mensagemErro = error.error.detail.map((err: any) => {
+                  const field = err.loc[err.loc.length - 1]; // Pega o último item do 'loc' (nome do campo)
+                  // Remove "Value error," prefix from the message
+                  const cleanMsg = err.msg.replace(/^Value error, /, '');
+                  return `Campo ${field}: ${cleanMsg}`;
+              }).join('\n');
+          } else {
+              mensagemErro = `Erro: ${error.error.detail}`;
+          }
+        } else {
+            // Outros erros (e.g., 500)
+            mensagemErro = `Erro: ${error.error.detail || 'Erro inesperado.'}`;
         }
-        else if (error.status && error.error){
-          mensagemErro = `Erro ${error.status}: ${error.error.message || error.error}`;
-        }
+
         window.alert(mensagemErro);
       },
       complete: () => {}

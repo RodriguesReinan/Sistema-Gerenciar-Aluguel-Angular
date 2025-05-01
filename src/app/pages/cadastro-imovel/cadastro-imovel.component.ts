@@ -52,9 +52,23 @@ export class CadastroImovelComponent implements OnInit {
   }
 
   salvar(){
+    console.log(this.cadastroForm.status, this.cadastroForm.errors, this.cadastroForm);
+    if (this.cadastroForm.invalid) {
+      window.alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
     // O endereço pode ser atualizado de um componente separado
     const endereco = this.endereco;
     const formValue = this.cadastroForm.value;
+
+    // Ensure no empty strings are sent
+    // for (const key in formValue) {
+    //   if (typeof formValue[key] === 'string' && !formValue[key].trim()) {
+    //       window.alert(`O campo ${key} não pode estar vazio.`);
+    //       return;
+    //   }
+    // }
 
      // nomes das propriedades devem ser iguais aos nomes na api
     const novoImovel = {
@@ -66,7 +80,7 @@ export class CadastroImovelComponent implements OnInit {
       qtd_quartos: parseInt(formValue.quartos, 10),
       qtd_suites: parseInt(formValue.suites, 10),
       qtd_banheiros: parseInt(formValue.banheiros, 10),
-      descricao: formValue.descricao || "",
+      descricao: formValue.descricao || null,
 
       proprietario:{
         cpf: formValue.cpf_proprietario
@@ -85,12 +99,27 @@ export class CadastroImovelComponent implements OnInit {
       error: (error) => {
         let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
 
-        if (error.message){
-          mensagemErro = `Erro: ${error.message}`;
+        if (error.status === 409) {
+          // Conflito (e.g., duplicidade)
+          mensagemErro = `Erro: ${error.error.detail}.`;
+        } else if (error.status === 422) {
+          // Erro de validação (Pydantic/FastAPI)
+          if (Array.isArray(error.error.detail)) {
+              // Extrai as mensagens de erro do array 'detail'
+              mensagemErro = error.error.detail.map((err: any) => {
+                  const field = err.loc[err.loc.length - 1]; // Pega o último item do 'loc' (nome do campo)
+                  // Remove "Value error," prefix from the message
+                  const cleanMsg = err.msg.replace(/^Value error, /, '');
+                  return `Campo ${field}: ${cleanMsg}`;
+              }).join('\n');
+          } else {
+              mensagemErro = `Erro: ${error.error.detail}`;
+          }
+        } else {
+            // Outros erros (e.g., 500)
+            mensagemErro = `Erro: ${error.error.detail || 'Erro inesperado.'}`;
         }
-        else if (error.status && error.error){
-          mensagemErro = `Erro ${error.status}: ${error.error.message || error.error}`;
-        }
+
         window.alert(mensagemErro);
       },
       complete: () => {}

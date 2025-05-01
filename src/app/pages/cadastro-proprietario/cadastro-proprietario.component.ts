@@ -31,7 +31,13 @@ export class CadastroProprietarioComponent implements OnInit {
         profissao_ocupacao: [''],
         email: ['']
       }),
-      dadosBancarios: this.fb.group({}),
+      dadosBancarios: this.fb.group({
+        agencia: [''],            // 👈 sem Validators
+        banco: [''],
+        numero_conta: [''],
+        chave_pix: [''],
+        tipo_chave_pix: [''],
+      }),
     })
   }
 
@@ -48,11 +54,25 @@ export class CadastroProprietarioComponent implements OnInit {
   }
 
   salvar(){
+    console.log(this.cadastroForm.status, this.cadastroForm.errors, this.cadastroForm);
+    if (this.cadastroForm.invalid) {
+      window.alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
     const dadosPessoais = this.cadastroForm.get('dadosPessoais')?.value;
     const dadosBancarios = this.cadastroForm.get('dadosBancarios')?.value;
 
     // O endereço pode ser atualizado de um componente separado
     const endereco = this.endereco1;
+
+    // Ensure no empty strings are sent
+    for (const key in dadosPessoais) {
+      if (typeof dadosPessoais[key] === 'string' && !dadosPessoais[key].trim()) {
+          window.alert(`O campo ${key} não pode estar vazio.`);
+          return;
+      }
+    }
 
     // Criar um único objeto combinando os dados dos diferentes componentes
     const novoProprietario = {
@@ -65,7 +85,8 @@ export class CadastroProprietarioComponent implements OnInit {
       profissao_ocupacao: dadosPessoais.profissao_ocupacao,
       email: dadosPessoais.email,
       endereco: `${endereco.cep}, ${endereco.logradouro}, ${endereco.numero}, ${endereco.bairro}, ${endereco.localidade} - ${endereco.uf}`,
-      conta_bancaria: dadosBancarios.numero_conta,
+
+      conta_bancaria: `${dadosBancarios.numero_conta}, ${dadosBancarios.banco}, ${dadosBancarios.agencia}`,
       pix: dadosBancarios.chave_pix,
       chave_pix: dadosBancarios.tipo_chave_pix,
     };
@@ -87,7 +108,29 @@ export class CadastroProprietarioComponent implements OnInit {
         window.alert('Cadastro realizado com sucesso!');
       },
       (error) => {
-        console.log('Erro ao salvar o proprietário: ', error)
+        let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
+
+        if (error.status === 409) {
+          // Conflito (e.g., duplicidade)
+          mensagemErro = `Erro: ${error.error.detail}.`;
+        } else if (error.status === 422) {
+          // Erro de validação (Pydantic/FastAPI)
+          if (Array.isArray(error.error.detail)) {
+              // Extrai as mensagens de erro do array 'detail'
+              mensagemErro = error.error.detail.map((err: any) => {
+                  const field = err.loc[err.loc.length - 1]; // Pega o último item do 'loc' (nome do campo)
+                  // Remove "Value error," prefix from the message
+                  const cleanMsg = err.msg.replace(/^Value error, /, '');
+                  return `Campo ${field}: ${cleanMsg}`;
+              }).join('\n');
+          } else {
+              mensagemErro = `Erro: ${error.error.detail}`;
+          }
+        } else {
+            // Outros erros (e.g., 500)
+            mensagemErro = `Erro: ${error.error.detail || 'Erro inesperado.'}`;
+        }
+
         // Exibe mensagem de erro
         window.alert('Erro ao realizar o cadastro. Tente novamente.');
       }

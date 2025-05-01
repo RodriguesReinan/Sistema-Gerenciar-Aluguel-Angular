@@ -17,7 +17,7 @@ export class ImovelService {
 
 
   getImovel(): Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/`);
+    return this.http.get<any>(`${this.apiUrl}/imoveis-disponiveis`);
   }
 
 
