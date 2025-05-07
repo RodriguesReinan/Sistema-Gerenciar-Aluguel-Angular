@@ -23,6 +23,7 @@ export class CadastroAluguelComponent implements OnInit {
   VmodelosPdfIds: any[] = []
   editandoContratoAluguel: string | null = null; // Define se está no modo de edição
 
+
   constructor(
     private fb: FormBuilder,
     private aluguelService: CadastroAluguelService,
@@ -58,26 +59,26 @@ export class CadastroAluguelComponent implements OnInit {
     // obtendo o id do usuário
     this.loginService.get_user_id().subscribe({
       next: (userData) => {
-        console.log('dados gerais: ', userData);
+        // console.log('dados gerais: ', userData);
         const userEmail = userData?.email;
         const userId = userData?.id;
 
         if (userId){
-          console.log('id do usuário: ', userId);
+          // console.log('id do usuário: ', userId);
           this.cadastroForm.patchValue({usuario_id: userId});
-        } else {
-          console.error('Usuário não autenticado.');
-        }
+        } //else {
+          // console.error('Usuário não autenticado.');
+        // }
 
-        if (userEmail){
-          console.log('email do usuario: ', userEmail)
-        } else {
-          console.error('Usuário não autenticado.');
-        }
+        // if (userEmail){
+          // console.log('email do usuario: ', userEmail)
+        // } else {
+          // console.error('Usuário não autenticado.');
+        // }
       },
-      error: (err) => {
-        console.log('Erro ao obter email do usuário', err);
-      }
+      // error: (err) => {
+        // console.log('Erro ao obter email do usuário', err);
+      // }
     });
   }
 
@@ -85,19 +86,19 @@ export class CadastroAluguelComponent implements OnInit {
     this.inquilinoService.getInquilinos().subscribe({
       next: (data) => {
         this.inquilinos = data
-        console.log(data);
+        // console.log(data);
       },
-      error: (erro) => {
-        let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
+      // error: (erro) => {
+        // let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
 
-        if (erro.message){
-          mensagemErro = `Erro: ${erro.message}`;
-        }
-        else if (erro.status && erro.message) {
-          mensagemErro = `Erro ${erro.status}: ${erro.erro.message || erro.erro}`;
-        }
-        window.alert(mensagemErro);
-      },
+        // if (erro.message){
+          // mensagemErro = `Erro: ${erro.message}`;
+        // }
+        // else if (erro.status && erro.message) {
+          // mensagemErro = `Erro ${erro.status}: ${erro.erro.message || erro.erro}`;
+        // }
+        // window.alert(mensagemErro);
+      // },
       complete: () => {}
     });
   }
@@ -106,19 +107,19 @@ export class CadastroAluguelComponent implements OnInit {
     this.imovelService.getImovel().subscribe({
       next: (data) => {
         this.imoveis = data;
-        console.log(data);
+        // console.log(data);
       },
-      error: (erro) => {
-        let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
+      // error: (erro) => {
+        // let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
 
-        if (erro.message){
-          mensagemErro = `Erro: ${erro.message}`;
-        }
-        else if (erro.status && erro.message) {
-          mensagemErro = `Erro ${erro.status}: ${erro.erro.message || erro.erro}`;
-        }
-        window.alert(mensagemErro);
-      },
+        // if (erro.message){
+          // mensagemErro = `Erro: ${erro.message}`;
+        // }
+        // else if (erro.status && erro.message) {
+          // mensagemErro = `Erro ${erro.status}: ${erro.erro.message || erro.erro}`;
+        // }
+        // window.alert(mensagemErro);
+      // },
       complete: () => {}
     });
   }
@@ -127,19 +128,19 @@ export class CadastroAluguelComponent implements OnInit {
     this.aluguelService.getAlugueis().subscribe({
       next: (data) => {
         this.alugueis = data;
-        console.log('this.alugueis', this.alugueis)
+        // console.log('this.alugueis', this.alugueis)
       },
-      error: (erro) => {
-        let mensagemErro = 'Erro ao carregar os alugueis';
+      // error: (erro) => {
+        // let mensagemErro = 'Erro ao carregar os alugueis';
 
-        if (erro.message){
-          mensagemErro = `Erro: ${erro.message}`;
-        }
-        else if (erro.status && erro.message) {
-          mensagemErro = `Erro ${erro.status}: ${erro.erro.message || erro.erro}`;
-        }
-        window.alert(mensagemErro);
-      },
+        // if (erro.message){
+          // mensagemErro = `Erro: ${erro.message}`;
+        // }
+        // else if (erro.status && erro.message) {
+          // mensagemErro = `Erro ${erro.status}: ${erro.erro.message || erro.erro}`;
+        // }
+        // window.alert(mensagemErro);
+      // },
       complete: () => {}
     });
   }
@@ -154,17 +155,17 @@ export class CadastroAluguelComponent implements OnInit {
       next: (data) => {
         this.pagamentos = data
       },
-      error: (erro) => {
-        let mensagemErro = 'Erro ao carregar os pagamentos';
-        if (erro.message) {
-          mensagemErro = `Erro: ${erro.message}`;
+      // error: (erro) => {
+        // let mensagemErro = 'Erro ao carregar os pagamentos';
+        // if (erro.message) {
+          // mensagemErro = `Erro: ${erro.message}`;
 
-        }
-        else if (erro.status && erro.message){
-          mensagemErro = `Erro: ${erro.status}: ${erro.erro.message || erro.erro}`;
-        }
-        window.alert(mensagemErro);
-      },
+        // }
+        // else if (erro.status && erro.message){
+          // mensagemErro = `Erro: ${erro.status}: ${erro.erro.message || erro.erro}`;
+        // }
+        // window.alert(mensagemErro);
+      // },
       complete: () => {}
     });
 
@@ -172,8 +173,7 @@ export class CadastroAluguelComponent implements OnInit {
     this.router.navigate([`/consultar-pagamentos`, contratoId]);  // Passando contratoId para a nova página
   }
 
-  carregarContratoPdfPorContrato(contrato_modelo_id: string, contrato_aluguel_id: string){   // , contrato_aluguel_id: string
-    // contratoModeloId: 217eb48f-5e17-4797-87e6-ff1bbc2a2e01
+  carregarContratoPdfPorContrato(contrato_modelo_id: string, contrato_aluguel_id: string){
     if (!contrato_modelo_id){
       window.alert('Contrato inválido.');
       return;
@@ -182,19 +182,19 @@ export class CadastroAluguelComponent implements OnInit {
     this.contratoModeloPdf.gerarHtmlContrato(contrato_modelo_id, contrato_aluguel_id).subscribe({
       next: (data) => {
         this.VcontratoModeloPdf = data
-        console.log('contratos seilá', this.VcontratoModeloPdf);
+        // console.log('contratos seilá', this.VcontratoModeloPdf);
       },
-      error: (erro) => {
-        let mensagemErro = 'Erro ao carregar os pagamentos';
-        if (erro.message) {
-          mensagemErro = `Erro: ${erro.message}`;
+      // error: (erro) => {
+        // let mensagemErro = 'Erro ao carregar os pagamentos';
+        // if (erro.message) {
+          // mensagemErro = `Erro: ${erro.message}`;
 
-        }
-        else if (erro.status && erro.message){
-          mensagemErro = `Erro: ${erro.status}: ${erro.erro.message || erro.erro}`;
-        }
-        window.alert(mensagemErro);
-      },
+        // }
+        // else if (erro.status && erro.message){
+          // mensagemErro = `Erro: ${erro.status}: ${erro.erro.message || erro.erro}`;
+        // }
+        // window.alert(mensagemErro);
+      // },
     });
     // Usando router para navegar e passar o contratoId como parâmetro
     this.router.navigate([`/contrato-pdf`, contrato_modelo_id], {
@@ -238,17 +238,17 @@ export class CadastroAluguelComponent implements OnInit {
       dia_vencimento: aluguel.dia_vencimento,
       valor_mensal: aluguel.valor_mensal,
       status: aluguel.status,
-      //taxa_limpeza: aluguel.taxa_limpeza
+      taxa_limpeza: aluguel.taxa_limpeza
     };
 
     this.aluguelService.edit_aluguel(aluguel.id, aluguelAtualizado).subscribe({
       next: () => {
         this.editandoContratoAluguel = null;
-        console.log('parcela', aluguelAtualizado);
+        // console.log('parcela', aluguelAtualizado);
         alert('Pagamento atualizado com sucesso!');
       },
       error: (error) => {
-        let mensagemErro = 'Erro ao carregar os pagamentos';
+        let mensagemErro = 'Erro ao atualizar os pagamentos';
         if (error.status === 409) {
           // Conflito (e.g., duplicidade)
           mensagemErro = `Erro: ${error.error.detail}.`;
@@ -278,7 +278,7 @@ export class CadastroAluguelComponent implements OnInit {
   }
 
   salvar(){
-    console.log(this.cadastroForm.status, this.cadastroForm.errors, this.cadastroForm);
+    // console.log(this.cadastroForm.status, this.cadastroForm.errors, this.cadastroForm);
 
     if (this.cadastroForm.invalid) {
       window.alert('Por favor, preencha todos os campos obrigatórios.');
@@ -288,14 +288,6 @@ export class CadastroAluguelComponent implements OnInit {
     const formValue = this.cadastroForm.value;
     const inquilinoSelecionado = this.inquilinos.find(i => i.cpf === formValue.cpf_inquilino);
     const imovelSelecionado = this.imoveis.find(i => i.id === formValue.endereco_imovel);
-
-    // Ensure no empty strings are sent
-    // for (const key in formValue) {
-    //   if (typeof formValue[key] === 'string' && !formValue[key].trim()) {
-    //       window.alert(`O campo ${key} não pode estar vazio.`);
-    //       return;
-    //   }
-    // }
 
     // nomes das propriedades devem ser iguais aos nomes na api, contratos/schema.py
     const novoAluguel = {
@@ -321,12 +313,16 @@ export class CadastroAluguelComponent implements OnInit {
       }
     };
 
-    console.log('Dados do aluguel a serem enviados: 01', novoAluguel);
+    // console.log('Dados do aluguel a serem enviados: 01', novoAluguel);
     this.aluguelService.createAluguel(novoAluguel).subscribe({
       next: (response) => {
         this.carregarAlugueis();  // Atualiza a lista
-        console.log('Aluguel cadastrado com sucesso!', response);
+        // console.log('Aluguel cadastrado com sucesso!', response);
         window.alert('Aluguel cadastrado com sucesso!');
+
+        // ✅ Atualize a lista de imóveis disponíveis
+        this.carregarImoveis();
+
         this.cadastroForm.reset();
       },
       error: (error) => {

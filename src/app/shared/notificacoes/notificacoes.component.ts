@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from 'src/app/services/login.service';
+import {environment} from 'src/environments/environment';
 
 
 interface Notificacao {
@@ -21,7 +22,9 @@ interface Notificacao {
 export class NotificacoesComponent implements OnInit {
   notificacoes: Notificacao[] = [];
   dropdownAberto = false;
-  private apiUrl_base = 'http://localhost:8000'
+
+  private apiUrl_base = `${environment.apiUrl}`;
+
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
@@ -38,25 +41,14 @@ export class NotificacoesComponent implements OnInit {
   }
 
   carregarNotificacoes(){
-    // const usuarioId = 1;  // pegar dinâmicamente
-    // // este bloco estava fora e era apenas ele
-    // this.http.get<Notificacao[]>(`${this.apiUrl_base}/notificacao/notificacoes/novas?usuario_id=${usuarioId}`).subscribe({
-    //   next: (data) => {
-    //     this.notificacoes = data;
-    //   },
-    //   error: (erro) => {
-    //     console.log('erro ao carregar as notificações', erro)
-    //   },
-    //   complete: () => {}
-    // });
 
     this.loginService.get_user_id().subscribe({
       next: (userData) => {
-        console.log('user data notificacao: ', userData)
+        //console.log('user data notificacao: ', userData)
         const usuarioId = userData?.id;
-        console.log('usuario id notificacoes', usuarioId);
+        //console.log('usuario id notificacoes', usuarioId);
         if (!usuarioId){
-          console.log('Usuário não autenticado.');
+          //console.log('Usuário não autenticado.');
           return;
         }
 
@@ -72,7 +64,7 @@ export class NotificacoesComponent implements OnInit {
         });
       },
       error: (err) => {
-        console.log('Erro ao obter ID do usuário', err);
+        console.log('Erro ao obter ID do usuário');
       }
     });
 
@@ -97,14 +89,5 @@ export class NotificacoesComponent implements OnInit {
       }
     });
   }
-
-  // marcarComoVisualizada(id: number) {
-  //   const usuarioId = 1;
-  //   id = 15;
-  //   this.http.patch(`${this.apiUrl_base}/notificacao/notificacoes/${id}/visualizar?usuario_id=${usuarioId}`, {}).subscribe(() => {
-  //     const notif = this.notificacoes.find(n => n.pk_id === id);
-  //     if (notif) notif.status = 'enviado-visualizado';
-  //   });
-  // }
 
 }

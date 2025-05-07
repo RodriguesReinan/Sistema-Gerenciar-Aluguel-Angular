@@ -69,22 +69,6 @@ export class EnderecoComponent implements OnInit {
         alert('Erro ao consultar o CEP. Tente novamente mais tarde.');
       }
     });
-
-    // this.service.buscarCEP(cep).subscribe(
-    //   dados => {
-    //   if (dados) {
-
-    //     this.enderecoForm.patchValue({
-    //       logradouro: dados.logradouro,
-    //       bairro: dados.bairro,
-    //       localidade: dados.localidade,
-    //       uf: dados.uf,
-    //     });
-
-    //     this.cdRef.detectChanges();
-    //     // this.enderecoChange.emit(this.enderecoForm.value);
-    //   }
-    // });
   }
 
   // O usuário confirma o endereço após preencher o número e complemento

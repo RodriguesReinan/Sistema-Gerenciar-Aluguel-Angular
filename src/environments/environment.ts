@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'http://localhost:8000',
   cepAPI: 'https://viacep.com.br/ws/',
   firebase: {
     apiKey: "AIzaSyBc2Wu6Lu3XdOOHQtcW4DSLvvZw3ZmcnLA",

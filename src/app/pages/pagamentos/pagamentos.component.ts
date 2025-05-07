@@ -16,6 +16,13 @@ export class PagamentosComponent implements OnInit {
   contratoId!: string;
   editandoPagamentoId: string | null = null; // Define se está no modo de edição
 
+    // paginação
+    paginaAtual = 1;
+    totalPaginas = 1;
+    itensPorPagina = 10;
+    listaCompleta: any[] = [] // todos os dados
+    listaPaginada: any[] = []  // apenas os dados da página atual
+
   constructor(
     private pagamentoService: PagamentoService,
     private cadastroAluguel: CadastroAluguelService,
@@ -82,7 +89,8 @@ export class PagamentosComponent implements OnInit {
 
     this.pagamentoService.get_pagamento_por_contrato(contratoId).subscribe({
       next: (data) => {
-        this.pagamentos = data
+        this.pagamentos = data;
+        this.atualizarPaginacaoPagamentos();  // Atualiza a paginação após receber os dados
       },
       error: (erro) => {
         let mensagemErro = 'Erro ao carregar os pagamentos';
@@ -116,7 +124,6 @@ export class PagamentosComponent implements OnInit {
     this.pagamentoService.edit_pagamento(parcela.id, parcelaAtualizada).subscribe({
       next: () => {
         this.editandoPagamentoId = null;
-        console.log('parcela', parcelaAtualizada);
         alert('Pagamento atualizado com sucesso!');
       },
       error: (erro) => {
@@ -129,11 +136,35 @@ export class PagamentosComponent implements OnInit {
           mensagemErro = `Erro: ${erro.status}: ${erro.erro.message || erro.erro}`;
         }
         window.alert(mensagemErro);
-        console.log('parcela', parcelaAtualizada);
       },
       complete: () => {}
 
     });
+  }
+
+  atualizarPaginacaoPagamentos(){
+    this.listaCompleta = this.pagamentos;
+    const inicio = (this.paginaAtual -1) * this.itensPorPagina;
+    const fim = inicio + this.itensPorPagina;
+    this.listaPaginada = this.listaCompleta.slice(inicio, fim);
+
+    // Atualizando o número total de páginas
+    this.totalPaginas = Math.ceil(this.listaCompleta.length / this.itensPorPagina);
+  }
+
+  proximaPagina(){
+    const totalPaginas = Math.ceil(this.listaCompleta.length / this.itensPorPagina);
+    if (this.paginaAtual < totalPaginas){
+      this.paginaAtual++;
+      this.atualizarPaginacaoPagamentos();
+    }
+  }
+
+  paginaAnterior(){
+    if (this.paginaAtual > 1){
+      this.paginaAtual--;
+      this.atualizarPaginacaoPagamentos();
+    }
   }
 
 }

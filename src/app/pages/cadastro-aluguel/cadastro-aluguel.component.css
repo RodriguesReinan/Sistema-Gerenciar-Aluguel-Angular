@@ -45,7 +45,25 @@
   border-radius: 4px;
 }
 
-button {
+.submit-button {
+  width: 50%; /* w-full */
+  max-width: 300px; /* Limita a largura máxima */
+  background-color: #3b82f6; /* bg-blue-500 */
+  color: #ffffff; /* text-white */
+  padding: 0.5rem; /* p-2 */
+  border-radius: 0.375rem; /* rounded-md */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.submit-button:hover {
+  background-color: #2563eb; /* hover:bg-blue-600 */
+}
+
+/* button {
   background-color: #3b82f6;
   color: white;
   padding: 10px 16px;
@@ -57,7 +75,7 @@ button {
 
 button:hover {
   background-color: #2563eb;
-}
+} */
 
 table {
   width: 100%;
@@ -79,3 +97,70 @@ td, th {
   border-bottom: 1px solid #ddd;
 }
 
+/* lista contrato*/
+
+.container__lista_contratos {
+  max-width: 64rem; /* equivalente ao max-w-4xl */
+  margin: 1.5rem auto 0 auto; /* mt-6 e centralizado */
+}
+
+.titulo {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: bold;  /* font-bold */
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.lista_contratos {
+  width: 100%; /* w-full */
+  background-color: white; /* bg-white */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+.cabecalho {
+  background-color: #e5e7eb; /* bg-gray-200 */
+}
+
+.action-buttons {
+  display: flex;                     /* Usa Flexbox para organizar os botões em linha */
+  gap: 0.5rem;                       /* Espaçamento de 0.5rem (~8px) entre os botões */
+  flex-wrap: wrap;                  /* Permite que os botões quebrem de linha se não couberem na horizontal */
+  justify-content: center;          /* Centraliza os botões horizontalmente dentro da célula ou div pai */
+}
+
+
+.submit-button1 {
+  background-color: #3b82f6;        /* Cor de fundo azul (tom claro) */
+  color: #ffffff;                   /* Texto branco */
+  padding: 15px;          /* Espaço interno (vertical: 0.4rem, horizontal: 0.75rem)   padding: 0.4rem 0.75rem; */
+  border-radius: 0.375rem;          /* Cantos levemente arredondados */
+  border: none;                     /* Remove qualquer borda padrão */
+  font-size: 14px;                  /* Tamanho da fonte do texto do botão */
+  cursor: pointer;                 /* Mostra o cursor de "mãozinha" ao passar o mouse */
+  transition: background-color 0.3s ease; /* Suaviza a troca de cor no hover */
+  white-space: nowrap;             /* Impede quebra de linha no texto do botão */
+}
+
+
+.submit-button1:hover {
+  background-color: #2563eb; /* Altera para um azul mais escuro no hover */
+}
+
+
+/* Responsividade básica (opcional) */
+@media (max-width: 768px) {
+  .lista_contratos {
+    font-size: 14px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+}

@@ -41,7 +41,8 @@
         </tr>
       </thead>
       <tbody id="pagamentos-list" class="pagamentos-list">
-        <tr *ngFor="let pagamento of pagamentos">
+        <!-- <tr *ngFor="let pagamento of pagamentos"> -->
+        <tr *ngFor="let pagamento of listaPaginada">
           <td *ngIf="editandoPagamentoId !== pagamento.id">{{ pagamento.data_vencimento }}</td>
           <td *ngIf="editandoPagamentoId === pagamento.id">
             <!-- <input type="date" [(ngModel)]="pagamento.data_vencimento"> -->
@@ -85,4 +86,11 @@
       </tbody>
     </table>
   </div>
+
+  <div class="pagination">
+    <button (click)="paginaAnterior()" [disabled]="paginaAtual === 1">⬅️ Anterior</button>
+    <span>Página {{ paginaAtual }} de {{ totalPaginas }}</span>
+    <button (click)="proximaPagina()" [disabled]="paginaAtual >= totalPaginas">Próxima ➡️</button>
+  </div>
+
 </div>

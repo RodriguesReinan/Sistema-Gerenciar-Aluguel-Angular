@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProprietarioService {
-  private apiUrl = 'http://localhost:8000/proprietarios';
+  private endpoint = '/proprietarios';
+  private apiUrl = `${environment.apiUrl}${this.endpoint}`;
 
   constructor(private http: HttpClient) { }
 

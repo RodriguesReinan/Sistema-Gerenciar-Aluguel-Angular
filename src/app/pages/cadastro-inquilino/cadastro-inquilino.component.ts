@@ -38,11 +38,11 @@ export class CadastroInquilinoComponent implements OnInit {
     this.inquilinoService.getInquilinos().subscribe(
       (data) => {
         this.inquilinos = data;
-      },
-      (error) => {
-        console.error('Erro ao carregar os proprietários', error);
-      }
-    );
+      // },
+      // (error) => {
+      //   console.error('Erro ao carregar os inquilinos', error);
+      // }
+  });
   }
 
   salvar(){
@@ -78,7 +78,7 @@ export class CadastroInquilinoComponent implements OnInit {
 
     this.inquilinoService.createInquilino(novoInquilino).subscribe({
       next: (response) => {
-        console.log('Inquilino salvo com sucesso!', response);
+        // console.log('Inquilino salvo com sucesso!', response);
         this.carregarInquilinos();  // Atualiza a lista
 
         this.cadastroForm.reset();

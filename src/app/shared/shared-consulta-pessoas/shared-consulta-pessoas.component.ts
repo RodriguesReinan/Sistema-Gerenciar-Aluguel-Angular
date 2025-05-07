@@ -52,7 +52,7 @@ export class SharedConsultaPessoasComponent implements OnInit {
     }
 
     service.subscribe(data => {
-    console.log(`${this.tipoPessoa}s recebidos: `, data);
+    //console.log(`${this.tipoPessoa}s recebidos: `, data);
     this.pessoas = data;
     this.aplicarFiltros();
     });

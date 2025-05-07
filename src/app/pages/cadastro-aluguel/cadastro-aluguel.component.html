@@ -1,7 +1,7 @@
 <div class="container__cadastro-aluguel">
     <h2>Cadastro de Contrato</h2>
     <div class="cadastro-aluguel">
-      <form id="contrato-form" class="space-y-4" *ngIf="cadastroForm" [formGroup]="cadastroForm" (ngSubmit)="salvar()">
+      <form *ngIf="cadastroForm" [formGroup]="cadastroForm" (ngSubmit)="salvar()">
         <div class="form-group">
             <label class="form-label">Data Início</label>
             <input type="date" id="data_inicio" class="form-input" formControlName="data_inicio">
@@ -76,22 +76,22 @@
     </div>
 </div>
 
-<div class="max-w-4xl mx-auto mt-6">
-    <h2 class="text-xl font-bold mb-2">Lista de Contratos</h2>
-    <table class="w-full bg-white rounded-lg shadow-md overflow-hidden">
-        <thead class="bg-gray-200">
+<div class="container__lista_contratos">
+    <h2 class="titulo">Lista de Contratos</h2>
+    <table class="lista_contratos">
+        <thead class="cabecalho">
             <tr>
-                <th class="p-2">Início</th>
-                <th class="p-2">Fim</th>
-                <th class="p-2">Dia de Vencimento</th>
-                <th class="p-2">Valor (R$)</th>
-                <th class="p-2">Status</th>
-                <th class="p-2">Inquilino</th>
-                <th class="p-2">Imóvel</th>
-                <th class="p-2">Ações</th>
+                <th class="celula">Início</th>
+                <th class="celula">Fim</th>
+                <th class="celula">Dia de Vencimento</th>
+                <th class="celula">Valor (R$)</th>
+                <th class="celula">Status</th>
+                <th class="celula">Inquilino</th>
+                <th class="celula">Imóvel</th>
+                <th class="celula">Ações</th>
             </tr>
         </thead>
-        <tbody id="contrato-list" class="divide-y">
+        <tbody id="contrato-list" class="corpo_lista">
           <!-- Contratos serão adicionados aqui -->
           <tr *ngFor="let aluguel of alugueis">
             <td>{{aluguel.data_inicio}}</td>
@@ -122,34 +122,24 @@
             <td>{{aluguel.inquilino?.nome}} - {{aluguel.inquilino?.cpf}}</td>
             <td>{{aluguel.imovel?.bairro}}, {{aluguel.imovel?.numero}}</td>
             <td>
-              <button
-                class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-700"
-                (click)="carregarPagamentosPorContrato(aluguel.id)">
-                Ver Pagamentos
-              </button>
-            </td>
+              <div class="action-buttons">
+                <button
+                  class="submit-button1"
+                  (click)="carregarPagamentosPorContrato(aluguel.id)">
+                  Ver Pagamentos
+                </button>
 
-            <td>
-              <button
-                class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-700"
-                (click)="_gerarContratoPdf(aluguel.id)">
-                Gerar Pdf
-              </button>
-            </td>
+                <button
+                  class="submit-button1"
+                  (click)="_gerarContratoPdf(aluguel.id)">
+                  Gerar Pdf
+                </button>
 
-            <td>
-              <button *ngIf="editandoContratoAluguel !== aluguel.id" (click)="editar(aluguel.id)">Editar</button>
-              <button *ngIf="editandoContratoAluguel === aluguel.id" (click)="salvar_edicao(aluguel)">Salvar</button>
-              <button *ngIf="editandoContratoAluguel === aluguel.id" (click)="editandoContratoAluguel = null">Cancelar</button>
+                <button class="submit-button1" *ngIf="editandoContratoAluguel !== aluguel.id" (click)="editar(aluguel.id)">Editar</button>
+                <button *ngIf="editandoContratoAluguel === aluguel.id" (click)="salvar_edicao(aluguel)">Salvar</button>
+                <button *ngIf="editandoContratoAluguel === aluguel.id" (click)="editandoContratoAluguel = null">Cancelar</button>
+              </div>
             </td>
-
-            <!-- <td>
-              <button
-                class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-700"
-                (click)="carregarContratoPdfPorContrato('217eb48f-5e17-4797-87e6-ff1bbc2a2e01', aluguel.id)">
-                Gerar Pdf
-              </button>
-            </td> -->
 
           </tr>
         </tbody>
@@ -174,13 +164,13 @@
         const tabela = document.getElementById("contrato-list");
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td class='p-2'>${dataInicio}</td>
-            <td class='p-2'>${dataFim}</td>
-            <td class='p-2'>${dataVencimento}</td>
-            <td class='p-2'>${valorMensal}</td>
-            <td class='p-2'>${status}</td>
-            <td class='p-2'>${inquilino}</td>
-            <td class='p-2'>${imovel}</td>
+            <td class='celula'>${dataInicio}</td>
+            <td class='celula'>${dataFim}</td>
+            <td class='celula'>${dataVencimento}</td>
+            <td class='celula'>${valorMensal}</td>
+            <td class='celula'>${status}</td>
+            <td class='celula'>${inquilino}</td>
+            <td class='celula'>${imovel}</td>
         `;
         tabela.appendChild(row);
 

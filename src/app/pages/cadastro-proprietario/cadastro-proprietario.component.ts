@@ -45,16 +45,16 @@ export class CadastroProprietarioComponent implements OnInit {
     this.proprietarioService.getProprietarios().subscribe(
       (data) => {
         this.proprietarios = data;
-        console.log('Proprietários carregados', data);
+        // console.log('Proprietários carregados', data);
       },
-      (error) => {
-        console.error('Erro ao carregar os proprietários', error);
-      }
+      // (error) => {
+      //   console.error('Erro ao carregar os proprietários', error);
+      // }
       );
   }
 
   salvar(){
-    console.log(this.cadastroForm.status, this.cadastroForm.errors, this.cadastroForm);
+    // console.log(this.cadastroForm.status, this.cadastroForm.errors, this.cadastroForm);
     if (this.cadastroForm.invalid) {
       window.alert('Por favor, preencha todos os campos obrigatórios.');
       return;
@@ -91,11 +91,8 @@ export class CadastroProprietarioComponent implements OnInit {
       chave_pix: dadosBancarios.tipo_chave_pix,
     };
 
-    console.log('Objeto enviado para API:', novoProprietario);
-
     this.proprietarioService.createProprietario(novoProprietario).subscribe(
       (response) => {
-        console.log('Proprietário salvo com sucesso!', response);
         this.carregarProprietarios();  // Atualiza a lista
 
         // ✅ Limpa todos os campos do formulário
@@ -147,7 +144,6 @@ export class CadastroProprietarioComponent implements OnInit {
 
   enderecoForm(dados: any) {
     this.endereco1 = dados;
-    console.log('Endereço atualizado:', this.endereco1);
   }
 
 }

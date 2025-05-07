@@ -10,6 +10,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class PushNotificationsService {
+  private endpoint = '/tokens-dispositivos/register-token';
+  private apiUrl = `${environment.apiUrl}${this.endpoint}`;
+
   private messageSource = new BehaviorSubject<MessagePayload | null>(null);
   currentMessage = this.messageSource.asObservable();
 
@@ -23,21 +26,21 @@ export class PushNotificationsService {
     // obtendo o id do usuário
     this.loginService.get_user_id().subscribe({
       next: (userData) => {
-        console.log('dados gerais: ', userData);
+        // console.log('dados gerais: ', userData);
         const userEmail = userData?.email;
         const userId = userData?.id;
 
-        if (userId){
-          console.log('id do usuário: ', userId);
-        } else {
-          console.error('Usuário não autenticado.');
-        }
+        // if (userId){
+          // console.log('id do usuário: ', userId);
+        // } else {
+          // console.error('Usuário não autenticado.');
+        // }
 
-        if (userEmail){
-          console.log('email do usuario: ', userEmail)
-        } else {
-          console.error('Usuário não autenticado.');
-        }
+        // if (userEmail){
+          // console.log('email do usuario: ', userEmail)
+        // } else {
+          // console.error('Usuário não autenticado.');
+        // }
       },
       error: (err) => {
         console.log('Erro ao obter email do usuário', err);
@@ -55,27 +58,27 @@ export class PushNotificationsService {
       }
     }).then((token) => {
       if(token){
-        console.log('Token Recebido: ', token);
+        // console.log('Token Recebido: ', token);
 
         // obtendo o id do usuário
         this.loginService.get_user_id().subscribe({
           next: (userData) => {
-            console.log('dados gerais: ', userData);
+            // console.log('dados gerais: ', userData);
             const userEmail = userData?.email;
             const userId = userData?.id;
 
             if (userId){
-              console.log('id do usuário: ', userId);
+              // console.log('id do usuário: ', userId);
               this.sendTokenToServer(token, userId);
-            } else {
-              console.error('Usuário não autenticado.');
-            }
+            } // else {
+              // console.error('Usuário não autenticado.');
+            // }
 
-            if (userEmail){
-              console.log('email do usuario: ', userEmail)
-            } else {
-              console.error('Usuário não autenticado.');
-            }
+            // if (userEmail){
+              // console.log('email do usuario: ', userEmail)
+            // } else {
+              // console.error('Usuário não autenticado.');
+            // }
           },
           error: (err) => {
             console.log('Erro ao obter email do usuário', err);
@@ -94,7 +97,7 @@ export class PushNotificationsService {
         id: userId
       }
     }
-    this.http.post(`http://localhost:8000/tokens-dispositivos/register-token`, novoToken).subscribe(
+    this.http.post(`${this.apiUrl}`, novoToken).subscribe(
       () => console.log('Token enviado para o servidor com sucesso!'),
       (error) => console.log('Erro ao enviar token: ', error)
     );
@@ -103,7 +106,7 @@ export class PushNotificationsService {
   // Ouvir notificações enquanto o app estiver aberto
   receiveMessage() {
     onMessage(this.messaging, (payload) => {
-      console.log('Mensagem recebida:', payload);
+      // console.log('Mensagem recebida:', payload);
       this.messageSource.next(payload);
     });
   }

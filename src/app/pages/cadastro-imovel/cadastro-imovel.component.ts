@@ -34,25 +34,25 @@ export class CadastroImovelComponent implements OnInit {
     this.proprietarioService.getProprietarios().subscribe({
       next: (data) =>{
         this.proprietarios = data
-        console.log(data);
+        // console.log(data);
       },
-      error: (error) => {
-        let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
+      // error: (error) => {
+      //   let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
 
-        if (error.message){
-          mensagemErro = `Erro: ${error.message}`;
-        }
-        else if (error.status && error.error){
-          mensagemErro = `Erro ${error.status}: ${error.error.message || error.error}`;
-        }
-        window.alert(mensagemErro);
-      },
+      //   if (error.message){
+      //     mensagemErro = `Erro: ${error.message}`;
+      //   }
+      //   else if (error.status && error.error){
+      //     mensagemErro = `Erro ${error.status}: ${error.error.message || error.error}`;
+      //   }
+      //   window.alert(mensagemErro);
+      // },
       complete: () => {}
   });
   }
 
   salvar(){
-    console.log(this.cadastroForm.status, this.cadastroForm.errors, this.cadastroForm);
+    // console.log(this.cadastroForm.status, this.cadastroForm.errors, this.cadastroForm);
     if (this.cadastroForm.invalid) {
       window.alert('Por favor, preencha todos os campos obrigatórios.');
       return;
@@ -61,14 +61,6 @@ export class CadastroImovelComponent implements OnInit {
     // O endereço pode ser atualizado de um componente separado
     const endereco = this.endereco;
     const formValue = this.cadastroForm.value;
-
-    // Ensure no empty strings are sent
-    // for (const key in formValue) {
-    //   if (typeof formValue[key] === 'string' && !formValue[key].trim()) {
-    //       window.alert(`O campo ${key} não pode estar vazio.`);
-    //       return;
-    //   }
-    // }
 
      // nomes das propriedades devem ser iguais aos nomes na api
     const novoImovel = {
@@ -87,14 +79,11 @@ export class CadastroImovelComponent implements OnInit {
       }
     };
 
-    console.log('Dados do imóvel a serem enviados:', novoImovel);
-    console.log('esta é a cpf proprietário: ', formValue.cpf_proprietario);
-
     this.imovelService.createImovel(novoImovel).subscribe({
       next: (response) => {
-        console.log('Imóvel cadastrado com sucesso!', response);
         window.alert('Imóvel cadastrado com sucesso!');
         this.cadastroForm.reset();
+        // console.log('dados do imóvel: ', response);
       },
       error: (error) => {
         let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
@@ -121,6 +110,7 @@ export class CadastroImovelComponent implements OnInit {
         }
 
         window.alert(mensagemErro);
+        console.log('dados do imóvel: ', novoImovel);
       },
       complete: () => {}
     });
@@ -133,7 +123,6 @@ export class CadastroImovelComponent implements OnInit {
 
   enderecoForm(dados: any) {
     this.endereco = dados;
-    console.log('Endereço atualizado:', this.endereco);
   }
 
 }

@@ -31,14 +31,14 @@ export class ContratoPdfViewComponent implements OnInit {
           next: (data) => {
             this.contratoHtml = this.sanitizer.bypassSecurityTrustHtml(data.html);
           },
-          error: err => {
-            console.log('Erro: está faltando parametrossss', err)
-          }
+          // error: err => {
+          //   console.log('Erro: está faltando parametrossss', err)
+          // }
         });
-      } else{
-        console.log('Erro: está faltando parametrossss', this.contratoId, this.contrato_aluguel_id)
-        console.warn('Parâmetros ausentes!')
-      }
+      } // else{
+      //   console.log('Erro: está faltando parametrossss', this.contratoId, this.contrato_aluguel_id)
+      //   console.warn('Parâmetros ausentes!')
+      // }
     });
   }
 
@@ -53,9 +53,9 @@ export class ContratoPdfViewComponent implements OnInit {
         a.download = `contrato_${this.contratoId}.pdf`;
         a.click();
       },
-      error: (err) => {
-        console.log('Erro ao gerar o pdf: ', err);
-      }
+      // error: (err) => {
+        // console.log('Erro ao gerar o pdf: ', err);
+      // }
     });
   }
 
