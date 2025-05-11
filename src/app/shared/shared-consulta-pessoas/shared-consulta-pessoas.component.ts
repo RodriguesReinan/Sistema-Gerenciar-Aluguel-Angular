@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProprietarioService } from 'src/app/services/proprietario.service';
 import { InquilinoService } from 'src/app/services/inquilino.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-pessoas',
@@ -22,7 +23,8 @@ export class SharedConsultaPessoasComponent implements OnInit {
 
   constructor(
     private proprietarioService: ProprietarioService,
-    private inquilinoService: InquilinoService
+    private inquilinoService: InquilinoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -71,7 +73,7 @@ export class SharedConsultaPessoasComponent implements OnInit {
 
   // Métodos para edição, exclusão e detalhes
   editar(pessoa: any) {
-    console.log('Editar:', pessoa);
+    this.router.navigate(['/editar-pessoa/', this.tipoPessoa, pessoa.id]);
   }
 
   excluir(pessoa: any) {
@@ -81,7 +83,7 @@ export class SharedConsultaPessoasComponent implements OnInit {
   }
 
   detalhes(pessoa: any) {
-    console.log('Detalhes:', pessoa);
+    this.router.navigate(['/detalhes-pessoa/', this.tipoPessoa, pessoa.id]);
   }
 
   getPessoasPaginadas(){

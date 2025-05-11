@@ -23,17 +23,17 @@ export class InquilinoService {
   }
 
 
-  getInquilinoById(id: number): Observable<any>{
+  getInquilinoById(id: string): Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
 
-  updateInquilino(id: number, proprietario: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, proprietario);
+  updateInquilino(id: string, proprietario: any): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/${id}`, proprietario);
   }
 
 
-  deleteInquilino(id: number): Observable<any> {
+  deleteInquilino(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }

@@ -59,26 +59,13 @@ export class CadastroAluguelComponent implements OnInit {
     // obtendo o id do usuário
     this.loginService.get_user_id().subscribe({
       next: (userData) => {
-        // console.log('dados gerais: ', userData);
         const userEmail = userData?.email;
         const userId = userData?.id;
 
         if (userId){
-          // console.log('id do usuário: ', userId);
           this.cadastroForm.patchValue({usuario_id: userId});
-        } //else {
-          // console.error('Usuário não autenticado.');
-        // }
-
-        // if (userEmail){
-          // console.log('email do usuario: ', userEmail)
-        // } else {
-          // console.error('Usuário não autenticado.');
-        // }
+        }
       },
-      // error: (err) => {
-        // console.log('Erro ao obter email do usuário', err);
-      // }
     });
   }
 
@@ -86,19 +73,7 @@ export class CadastroAluguelComponent implements OnInit {
     this.inquilinoService.getInquilinos().subscribe({
       next: (data) => {
         this.inquilinos = data
-        // console.log(data);
       },
-      // error: (erro) => {
-        // let mensagemErro = 'Erro ao realizar o cadastro. Tente novamente';
-
-        // if (erro.message){
-          // mensagemErro = `Erro: ${erro.message}`;
-        // }
-        // else if (erro.status && erro.message) {
-          // mensagemErro = `Erro ${erro.status}: ${erro.erro.message || erro.erro}`;
-        // }
-        // window.alert(mensagemErro);
-      // },
       complete: () => {}
     });
   }
@@ -245,10 +220,10 @@ export class CadastroAluguelComponent implements OnInit {
       next: () => {
         this.editandoContratoAluguel = null;
         // console.log('parcela', aluguelAtualizado);
-        alert('Pagamento atualizado com sucesso!');
+        alert('Contrato Aluguel atualizado com sucesso!');
       },
       error: (error) => {
-        let mensagemErro = 'Erro ao atualizar os pagamentos';
+        let mensagemErro = 'Erro ao atualizar o Contrato';
         if (error.status === 409) {
           // Conflito (e.g., duplicidade)
           mensagemErro = `Erro: ${error.error.detail}.`;

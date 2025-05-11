@@ -28,12 +28,12 @@ export class ProprietarioService {
   }
 
 
-  updateProprietario(id: number, proprietario: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, proprietario);
+  updateProprietario(id: string, proprietario: any): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/${id}`, proprietario);
   }
 
 
-  deleteProprietario(id: number): Observable<any> {
+  deleteProprietario(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 

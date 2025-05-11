@@ -13,6 +13,8 @@ import { SharedConsultaPessoasComponent } from 'src/app/shared/shared-consulta-p
 import { CadastroAluguelComponent } from './pages/cadastro-aluguel/cadastro-aluguel.component';
 import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
 import { ContratoPdfViewComponent } from './pages/contrato-pdf-view/contrato-pdf-view.component';
+import { EditarPessoaComponent } from './shared/editar-pessoa/editar-pessoa.component';
+import { DetalhesPessoaComponent } from './shared/detalhes-pessoa/detalhes-pessoa.component';
 
 
 const routes: Routes = [
@@ -41,6 +43,9 @@ const routes: Routes = [
   {path: 'contrato-pdf/:id', component: ContratoPdfViewComponent, canActivate: [LoginGuard]},
 
   { path: 'consultar-pagamentos/:id', component: PagamentosComponent, canActivate: [LoginGuard]},
+
+  {path: 'editar-pessoa/:tipo/:id', component: EditarPessoaComponent, pathMatch: 'prefix', canActivate: [LoginGuard]},
+  {path: 'detalhes-pessoa/:tipo/:id', component: DetalhesPessoaComponent, pathMatch: 'prefix', canActivate: [LoginGuard]},
 
   {path: '**', redirectTo:'/login'},
 

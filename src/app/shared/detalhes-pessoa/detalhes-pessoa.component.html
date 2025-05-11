@@ -1,0 +1,60 @@
+<div class="detalhes-container">
+      <div class="card" *ngIf="pessoa">
+        <h2>Informações Básicas - {{tipoPessoa | titlecase}}</h2>
+        <p>Nome: {{ pessoa.nome }}</p>
+        <p>CPF/CNPJ: {{ pessoa.cpf }}</p>
+        <p>Data de Nascimento: {{ pessoa.data_nascimento || "Não Informado"}}</p>
+      </div>
+
+      <div class="card">
+        <h2>Contato</h2>
+        <p>Telefone: {{ pessoa.telefone }}</p>
+        <p>Email: {{ pessoa.email }}</p>
+      </div>
+
+      <div class="card">
+        <h2>Dados Financeiros</h2>
+        <p>Conta Bancária: {{ pessoa.conta_bancaria || 'Não Informado' }}</p>
+        <p>Chave Pix: {{ pessoa.chave_pix || 'Não Informado'}}</p>
+        <p>Pix: {{ pessoa.pix || 'Não Informado'}}</p>
+      </div>
+
+      <div class="card" *ngIf="tipoPessoa === 'inquilino'">
+        <h2>Contratos/Vínculos</h2>
+        <div *ngIf="pessoa?.contratos?.length">
+          <ul>
+            <li *ngFor="let contrato of pessoa.contratos">
+              Imóvel: {{ contrato.imovel.endereco }}<br>
+              Valor Mensal: R$ {{ contrato.valor_mensal }}<br>
+              Data Início: {{ contrato.data_inicio }}<br>
+              Data Fim: {{ contrato.data_fim }}<br>
+              Status: {{ contrato.status }}
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="!pessoa?.contratos?.length">
+        <p>Este inquilino não possui contratos registrados.</p>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="tipoPessoa === 'proprietario'">
+        <h2>Imóveis Vinculados</h2>
+        <div *ngIf="pessoa?.imoveis_prop?.length">
+          <ul>
+            <li *ngFor="let imovel of pessoa.imoveis_prop">
+              {{ imovel.endereco }}<br>
+              {{ imovel.tipo_imovel | titlecase}}<br>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="!pessoa?.imoveis_prop?.length">
+          <p>Este Proprietario não possui imóveis registrados.</p>
+        </div>
+      </div>
+
+      <div class="card acao-buttons">
+        <button (click)="editar(pessoa)" class="submit-button1">✏️ Editar</button>
+        <!-- <button (click)="excluir(pessoa)">🗑️ Excluir</button> -->
+        <button (click)="voltar()" class="submit-button1">Voltar</button>
+      </div>
+    </div>

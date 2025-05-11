@@ -12,7 +12,8 @@
 
       <div id="cpf-prop" class="form-group">
         <label for="cpf_cnpj" class="form-label">CPF-CNPJ</label>
-        <input placeholder="Apenas Número" type="text" id="cpf_cnpj" name="cpf_cnpj" class="form-input" formControlName="cpf_cnpj" required>
+        <input placeholder="Apenas Número" type="text" id="cpf_cnpj" name="cpf_cnpj" class="form-input" formControlName="cpf_cnpj"
+        required>
         <!-- AVISO DE ERRO -->
         <div *ngIf="formGroupParent.get('cpf_cnpj')?.hasError('documentoInvalido') && formGroupParent.get('cpf_cnpj')?.touched">
           <small class="text-red-500" style="color: red;">CPF ou CNPJ inválido</small>
@@ -30,7 +31,8 @@
 
       <div id="orgao-emissor" class="form-group">
         <label for="orgao_emissor" class="form-label">Órgão Emissor</label>
-        <input placeholder="Exemplo: SSP-DF" type="text" id="orgao_emissor" name="orgao_emissor" class="form-input" formControlName="orgao_emissor" required>
+        <input placeholder="Exemplo: SSP-DF" type="text" id="orgao_emissor" name="orgao_emissor" class="form-input" formControlName="orgao_emissor"
+        required>
         <!-- AVISO DE ERRO -->
         <div *ngIf="formGroupParent.get('orgao_emissor')?.touched && formGroupParent.get('orgao_emissor')?.invalid" class="error-message">
           <small style="color: red;">Órgão Emissor é obrigatório</small>

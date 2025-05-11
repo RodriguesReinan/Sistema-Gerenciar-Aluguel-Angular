@@ -7,7 +7,9 @@ import { DadosPessoaisComponent } from './dados-pessoais/dados-pessoais.componen
 import { EnderecoComponent } from './endereco/endereco.component';
 import { DadosBancarioComponent } from './dados-bancario/dados-bancario.component';
 import { SharedConsultaPessoasComponent } from './shared-consulta-pessoas/shared-consulta-pessoas.component';
-import { NotificacoesComponent } from './notificacoes/notificacoes.component'
+import { NotificacoesComponent } from './notificacoes/notificacoes.component';
+import { EditarPessoaComponent } from './editar-pessoa/editar-pessoa.component';
+import { DetalhesPessoaComponent } from './detalhes-pessoa/detalhes-pessoa.component'
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { NotificacoesComponent } from './notificacoes/notificacoes.component'
     EnderecoComponent,
     DadosBancarioComponent,
     SharedConsultaPessoasComponent,
-    NotificacoesComponent
+    NotificacoesComponent,
+    EditarPessoaComponent,
+    DetalhesPessoaComponent
   ],
   imports: [
     CommonModule,

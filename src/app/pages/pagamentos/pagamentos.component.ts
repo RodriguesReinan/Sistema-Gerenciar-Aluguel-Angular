@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Location } from '@angular/common';
 import { CadastroAluguelService } from '../../services/cadastro-aluguel.service'
 import { PagamentoService } from '../../services/pagamento.service'
 
@@ -26,7 +27,8 @@ export class PagamentosComponent implements OnInit {
   constructor(
     private pagamentoService: PagamentoService,
     private cadastroAluguel: CadastroAluguelService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -165,6 +167,10 @@ export class PagamentosComponent implements OnInit {
       this.paginaAtual--;
       this.atualizarPaginacaoPagamentos();
     }
+  }
+
+  voltar(): void {
+    this.location.back();
   }
 
 }

@@ -86,9 +86,9 @@ export class CadastroProprietarioComponent implements OnInit {
       email: dadosPessoais.email,
       endereco: `${endereco.cep}, ${endereco.logradouro}, ${endereco.numero}, ${endereco.bairro}, ${endereco.localidade} - ${endereco.uf}`,
 
-      conta_bancaria: `${dadosBancarios.numero_conta}, ${dadosBancarios.banco}, ${dadosBancarios.agencia}`,
-      pix: dadosBancarios.chave_pix,
-      chave_pix: dadosBancarios.tipo_chave_pix,
+      conta_bancaria: `${dadosBancarios.numero_conta}, ${dadosBancarios.banco}, ${dadosBancarios.agencia}` || null,
+      pix: dadosBancarios.chave_pix || null,
+      chave_pix: dadosBancarios.tipo_chave_pix || null,
     };
 
     this.proprietarioService.createProprietario(novoProprietario).subscribe(
@@ -129,10 +129,27 @@ export class CadastroProprietarioComponent implements OnInit {
         }
 
         // Exibe mensagem de erro
-        window.alert('Erro ao realizar o cadastro. Tente novamente.');
+        window.alert(mensagemErro);
       }
     );
   }
+
+  // editar_proprietario(pessoa: any){
+  //   const update_proprietario = {
+  //     nome: pessoa.nome,
+  //     telefone: pessoa.telefone,
+  //     endereco: pessoa.endereco,
+  //     conta_bancaria: pessoa.conta_bancaria,
+  //     pix: pessoa.pix,
+  //     chave_pix: pessoa.chave_pix,
+  //     estado_civil: pessoa.estado_civil,
+  //     profissao_ocupacao: pessoa.profissao_ocupacao,
+  //     email: pessoa.email
+  //   };
+  //   console.log('metodo editar_proprietario', update_proprietario);
+
+  //   // this.proprietarioService.updateProprietario(id).subscribe({})
+  // }
 
   get dadosPessoaisForm(): FormGroup {
     return this.cadastroForm.get('dadosPessoais') as FormGroup;

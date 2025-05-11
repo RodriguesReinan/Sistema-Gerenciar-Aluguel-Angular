@@ -1,0 +1,13 @@
+<div class="container__editar-pessoa">
+  <h2>Editar {{ tipoPessoa | titlecase }}</h2>
+  <form [formGroup]="formGroupParent" (ngSubmit)="salvar()">
+    <app-dados-pessoais [formGroupParent]="formGroupParent"></app-dados-pessoais>
+
+    <!-- <button type="submit" class="submit-button" aria-label="Salvar dados">Salvar</button> -->
+     <div class="botoes-acoes">
+      <button type="submit" class="btn-salvar" aria-label="Salvar dados">Salvar</button>
+      <button type="button" class="btn-voltar" (click)="voltar()" aria-label="Voltar para a página anterior">Voltar</button>
+    </div>
+  </form>
+  <!-- <button (click)="voltar()" class="submit-button1" aria-label="Voltar para a página anterior">Voltar</button> -->
+</div>
