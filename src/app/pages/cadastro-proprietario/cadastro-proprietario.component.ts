@@ -67,24 +67,24 @@ export class CadastroProprietarioComponent implements OnInit {
     const endereco = this.endereco1;
 
     // Ensure no empty strings are sent
-    for (const key in dadosPessoais) {
-      if (typeof dadosPessoais[key] === 'string' && !dadosPessoais[key].trim()) {
-          window.alert(`O campo ${key} não pode estar vazio.`);
-          return;
-      }
-    }
+    // for (const key in dadosPessoais) {
+    //   if (typeof dadosPessoais[key] === 'string' && !dadosPessoais[key].trim()) {
+    //       window.alert(`O campo ${key} não pode estar vazio.`);
+    //       return;
+    //   }
+    // }
 
     // Criar um único objeto combinando os dados dos diferentes componentes
     const novoProprietario = {
       nome: dadosPessoais.nome,
       cpf: dadosPessoais.cpf_cnpj,
-      telefone: dadosPessoais.telefone,
-      rg: dadosPessoais.rg,
-      orgao_emissor: dadosPessoais.orgao_emissor,
-      estado_civil: dadosPessoais.estado_civil,
-      profissao_ocupacao: dadosPessoais.profissao_ocupacao,
-      email: dadosPessoais.email,
-      endereco: `${endereco.cep}, ${endereco.logradouro}, ${endereco.numero}, ${endereco.bairro}, ${endereco.localidade} - ${endereco.uf}`,
+      telefone: dadosPessoais.telefone || null,
+      rg: dadosPessoais.rg || null,
+      orgao_emissor: dadosPessoais.orgao_emissor || null,
+      estado_civil: dadosPessoais.estado_civil || null,
+      profissao_ocupacao: dadosPessoais.profissao_ocupacao || null,
+      email: dadosPessoais.email || null,
+      endereco: `${endereco.cep}, ${endereco.logradouro}, ${endereco.numero}, ${endereco.bairro}, ${endereco.localidade} - ${endereco.uf}` || null,
 
       conta_bancaria: `${dadosBancarios.numero_conta}, ${dadosBancarios.banco}, ${dadosBancarios.agencia}` || null,
       pix: dadosBancarios.chave_pix || null,
@@ -133,23 +133,6 @@ export class CadastroProprietarioComponent implements OnInit {
       }
     );
   }
-
-  // editar_proprietario(pessoa: any){
-  //   const update_proprietario = {
-  //     nome: pessoa.nome,
-  //     telefone: pessoa.telefone,
-  //     endereco: pessoa.endereco,
-  //     conta_bancaria: pessoa.conta_bancaria,
-  //     pix: pessoa.pix,
-  //     chave_pix: pessoa.chave_pix,
-  //     estado_civil: pessoa.estado_civil,
-  //     profissao_ocupacao: pessoa.profissao_ocupacao,
-  //     email: pessoa.email
-  //   };
-  //   console.log('metodo editar_proprietario', update_proprietario);
-
-  //   // this.proprietarioService.updateProprietario(id).subscribe({})
-  // }
 
   get dadosPessoaisForm(): FormGroup {
     return this.cadastroForm.get('dadosPessoais') as FormGroup;

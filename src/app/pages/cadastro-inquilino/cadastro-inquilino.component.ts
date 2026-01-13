@@ -55,12 +55,12 @@ export class CadastroInquilinoComponent implements OnInit {
     const dadosPessoais = this.cadastroForm.get('dadosPessoais')?.value;
 
     // Ensure no empty strings are sent
-    for (const key in dadosPessoais) {
-      if (typeof dadosPessoais[key] === 'string' && !dadosPessoais[key].trim()) {
-          window.alert(`O campo ${key} não pode estar vazio.`);
-          return;
-      }
-    }
+    // for (const key in dadosPessoais) {
+    //   if (typeof dadosPessoais[key] === 'string' && !dadosPessoais[key].trim()) {
+    //       window.alert(`O campo ${key} não pode estar vazio.`);
+    //       return;
+    //   }
+    // }
 
     const novoInquilino = {
       nome: dadosPessoais.nome,

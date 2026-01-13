@@ -13,9 +13,19 @@ export class CadastroImovelComponent implements OnInit {
   endereco: any = {};
   proprietarios: any[] = [];
 
+  opcoesCasaApartamento = [
+    { label: 'Casa', value: 'casa' },
+    { label: 'Apartamento', value: 'apartamento' },
+    { label: 'Loja', value: 'loja' },
+    { label: 'Prédio', value: 'predio' },
+  ];
+
   constructor(private fb: FormBuilder, private proprietarioService: ProprietarioService, private imovelService: ImovelService) { }
 
   ngOnInit(): void {
+    // Ordenar o campo "imóvel" em ordem alfabética
+    this.opcoesCasaApartamento.sort((a, b) => a.label.localeCompare(b.label));
+
     this.cadastroForm = this.fb.group({
       cpf_proprietario: [''], // Campo para CPF do proprietário
       tipo_imovel: [''],

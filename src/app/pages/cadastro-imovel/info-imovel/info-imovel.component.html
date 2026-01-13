@@ -12,11 +12,15 @@
       </div>
 
       <div class="form-group">
-        <label for="casa_apartamento" class="form-label">Casa/Apartamento:</label>
+        <label for="casa_apartamento" class="form-label">Imóvel:</label>
         <select id="casa_apartamento" class="form-input" formControlName="casa_apartamento">
-          <option value="casa">Casa</option>
+          <option *ngFor="let opcao of opcoesCasaApartamento" [value]="opcao.value">
+            {{opcao.label}}
+          </option>
+          <!-- <option value="casa">Casa</option>
           <option value="apartamento">Apartamento</option>
           <option value="loja">Loja</option>
+          <option value="predio">Prédio</option> -->
         </select>
       </div>
 

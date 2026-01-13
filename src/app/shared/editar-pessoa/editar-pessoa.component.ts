@@ -125,8 +125,8 @@ export class EditarPessoaComponent implements OnInit {
           this.formGroupParent.get('orgao_emissor')?.disable();
 
           // Desabilitar o campo nome diretamente no FormGroup
-          this.formGroupParent.get('nome')?.setValue(data.cpf);
-          this.formGroupParent.get('nome')?.disable();
+          // this.formGroupParent.get('nome')?.setValue(data.cpf);
+          // this.formGroupParent.get('nome')?.disable();
 
           // Mapeamento entre os campos da API e os campos do formulário
           const mapeamento: { [key: string]: string } = {
@@ -213,6 +213,7 @@ export class EditarPessoaComponent implements OnInit {
       }
       else if (this.tipoPessoa ==='inquilino'){
         const inquilinoAtualizado = {
+          nome: this.formGroupParent.value.nome,
           telefone: this.formGroupParent.value.telefone,
           estado_civil: this.formGroupParent.value.estado_civil,
           profissao_ocupacao: this.formGroupParent.value.profissao_ocupacao,

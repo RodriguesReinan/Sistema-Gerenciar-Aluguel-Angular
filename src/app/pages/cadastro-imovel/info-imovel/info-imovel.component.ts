@@ -9,6 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class InfoImovelComponent implements OnInit {
   @Input() formGroupParent!: FormGroup;
   @Input() proprietarios: any[] = []; // Recebe os proprietários do componente pai
+  @Input() opcoesCasaApartamento: any[] = [];
 
   constructor() { }
 
